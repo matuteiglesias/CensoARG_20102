@@ -1,0 +1,240 @@
+,PROVINCIA,departamen,POBLACION_
+0,['BUENOS AIRES' 'CIUDAD DE BUENOS AIRES'],"['La Matanza' 'Tres de Febrero' 'Comuna 7' 'Comuna 1' 'Comuna 4'
+ 'Comuna 15' 'Comuna 13' 'Comuna 8' 'Comuna 3' 'Comuna 2' 'Vicente López'
+ 'Avellaneda' 'Comuna 6' 'Comuna 14' 'Comuna 12' 'Comuna 9' 'Comuna 5'
+ 'Almirante Brown' 'Comuna 10' 'General San Martín' 'Morón' 'San Isidro'
+ 'Quilmes' 'Florencio Varela' 'Lanús' 'Lomas de Zamora' 'Comuna 11'
+ 'Berazategui' 'San Fernando' 'Moreno' 'Tigre' 'Hurlingham' 'San Miguel'
+ 'Merlo' 'Escobar' 'Malvinas Argentinas' 'Esteban Echeverría' 'Pilar'
+ 'José C. Paz' 'Ituzaingó' 'Ezeiza' 'Presidente Perón' 'General Rodríguez'
+ 'Marcos Paz' 'Cañuelas' 'La Plata']",13543466
+1,"['SAN JUAN' 'JUJUY' 'SALTA' 'TUCUMÁN' 'SANTA FE' 'RIO NEGRO' 'CHUBUT'
+ 'NEUQUÉN' 'CORRIENTES' 'MISIONES' 'BUENOS AIRES' 'ENTRE RÍOS' 'CHACO'
+ 'LA PAMPA' 'CORDOBA' 'CATAMARCA' 'SAN LUIS' 'MENDOZA' 'FORMOSA'
+ 'SANTIAGO DEL ESTERO' 'TIERRA DEL FUEGO' 'LA RIOJA' 'SANTA CRUZ'
+ 'CIUDAD DE BUENOS AIRES']","['9 de Julio' 'El Carmen' 'Orán' 'Monteros' 'Rosario' 'General Güemes'
+ 'Santa Bárbara' 'Cafayate' 'Cerrillos' 'General Obligado' 'Ledesma'
+ 'Palpalá' 'General Roca' 'San Pedro' 'Lules' 'Avellaneda' 'General López'
+ 'Metán' 'Yerba Buena' 'Rawson' 'Zapala' 'San Antonio'
+ 'Rosario de la Frontera' 'Anta' 'Bella Vista' 'Yavi' 'San Javier'
+ 'Guaraní' 'Chicoana' 'Rosario de Lerma' 'San Nicolás' 'Confluencia'
+ 'Federación' 'Chacabuco' 'Puelén' 'Juárez Celman' 'Humahuaca'
+ 'Chapaleufú' 'Santa María' 'Ischilín' 'Iguazú' 'San Justo' 'La Capital'
+ 'General José de San Martín' 'Añelo' 'Capital' 'Santo Tomé' 'Susques'
+ 'Colón' 'Chicligasta' 'Cruz Alta' 'Libertador General San Martín'
+ 'Burruyacú' 'Paraná' 'Sarmiento' 'Castellanos' 'La Paz' 'Río Chico'
+ 'San Martín' 'Famaillá' 'San Cristóbal' 'Río Primero'
+ 'General Manuel Belgrano' 'Belgrano' 'Pehuenches' 'Cochinoca'
+ '25 de Mayo' 'Leales' 'Zárate' 'Conhelo' 'General Pedernera' 'Tafí Viejo'
+ 'San Carlos' 'Unión' 'Tumbaya' '12 de Octubre' 'Diamante' 'Utracán'
+ 'San Salvador' 'Tupungato' 'Pirané' 'Federal' ""O'Higgins"" 'San Jerónimo'
+ 'Huiliches' 'Totoral' 'Presidencia de la Plaza' 'Tercero Arriba'
+ 'Libertad' 'Río Segundo' 'San Lorenzo' 'Vera' 'Lavalle'
+ 'General Pueyrredón' 'Feliciano' 'San Luis del Palmar' 'Robles'
+ 'Marcos Juárez' 'Ojo de Agua' 'Carlos Casares' 'Simoca' 'Concepción'
+ 'Rinconada' 'Río Grande' 'Río Cuarto' 'Realicó' 'La Cocha' 'Belén'
+ 'Rojas' 'Almirante Brown' 'Independencia' 'Tilcara' 'Constitución'
+ 'Chos Malal' 'San Antonio de Areco' 'San Andrés de Giles' 'Cañuelas'
+ 'Moreno' 'Conesa' 'Oberá' 'Graneros' 'General Villegas' 'Itatí' 'Atreucó'
+ 'Patiño' 'Eldorado' 'Angaco' 'Sobremonte' '1º de Mayo' 'Monte Caseros'
+ 'Trancas' 'General Viamonte' 'Lincoln' 'Jáchal' 'Ituzaingó'
+ 'Rosario Vera Peñaloza' 'Iriondo' 'Las Colonias' 'Capitán Sarmiento'
+ 'La Candelaria' 'Escalante' 'Caseros' 'Luján' 'Rauch'
+ 'Exaltación de la Cruz' 'Laishi' 'Banda' 'Gualeguaychú'
+ 'Florentino Ameghino' 'Tala' 'Villarino' 'Matacos' 'Chical Co' 'Monte'
+ 'Toay' 'Ensenada' 'Curacó' 'General Taboada' 'General San Martín'
+ 'Mayor Luis J. Fontana' 'Ramallo' 'Florencio Varela' 'Candelaria' 'Copo'
+ 'Uruguay' 'Rancul' 'General Belgrano' 'Guatraché' 'Santa Catalina'
+ 'Olavarría' 'Cainguás' 'Rivadavia' 'Alberdi' 'Güer Aike' 'Roque Pérez'
+ 'Los Andes' 'Magdalena' 'Ayacucho' 'Montecarlo' 'Leandro N. Alem'
+ 'Luján de Cuyo' 'Gualeguay' 'Zonda' 'Coronel Felipe Varela' 'Sauce'
+ 'Islas del Ibicuy' 'Monte Hermoso' 'Catriló' 'Aluminé' 'Santa Rosa'
+ 'Navarro' 'Pellegrini' 'Mar Chiquita' 'Quemú Quemú' 'Daireaux'
+ 'Patagones' 'Campana' 'Loreto' 'Pilcomayo' 'Carlos Tejedor'
+ 'Bahía Blanca' 'San Cosme' 'Castelli' 'Maipú' 'Concordia'
+ 'Coronel Dorrego' 'General Donovan' 'Loncopué' 'Los Lagos' 'Río Hondo'
+ '2 de Abril' 'Marcos Paz' 'Chascomús' 'Salliqueló' 'Río Seco' 'Junín'
+ 'Cruz del Eje' 'General Alvear' 'Calamuchita'
+ 'Presidente Roque Sáenz Peña' 'Coronel Pringles' 'Tres Lomas'
+ 'General Alvarado' 'Ezeiza' 'General La Madrid'
+ 'Fray Justo Santa María de Oro' 'Bermejo' 'San Ignacio' 'Suipacha'
+ 'General Las Heras' 'Chamical' 'Lobería' 'General Paz' 'Formosa'
+ 'Gobernador Dupuy' 'Benito Juárez' 'Juan B. Alberdi' 'Garay'
+ 'Hipólito Yrigoyen' 'Santa Victoria' 'Escobar' 'San Roque' 'Empedrado'
+ 'General Pinto' 'Collón Curá' 'Pilagás' 'Adolfo Gonzales Chaves'
+ 'Guaminí' 'Alberti' 'Bragado' 'Hucal' 'Lago Buenos Aires' 'Capayán'
+ 'Tornquist' 'Lácar' 'Laprida' 'Baradero' 'Apóstoles' 'San Cayetano'
+ 'San Miguel' 'La Costa' 'Comuna 13' 'Puán' 'Tapalqué' 'Loventué'
+ 'Juan F. Ibarra' 'Magallanes' 'Paclín' 'Adolfo Alsina' 'La Caldera'
+ 'Quebrachos' 'Punilla' 'General Arenales' 'Mburucuyá' 'Tulumba'
+ 'Ramón Lista' 'General Guido' 'San Rafael' 'Corpen Aike' 'Nogoyá'
+ 'Trenque Lauquen' 'Picún Leufú' 'Azul' 'Sargento Cabral' 'Minas'
+ 'Bolívar' 'Quitilipi' 'El Cuy' 'Jiménez' 'Futaleufú' 'Saladas'
+ 'Pergamino' 'Pichi Mahuida' 'Chivilcoy' 'Chalileo' 'Cachi' 'Cushamen'
+ 'Curuzú Cuatiá' 'Valcheta' 'Coronel Suárez' 'Brandsen' 'Tunuyán'
+ 'Necochea' 'Coronel de Marina Leonardo Rosales' 'Pocito' 'Aguirre'
+ 'Pocho' 'El Alto' 'Pila' 'Tordillo' 'Trenel' 'Las Heras' 'La Viña'
+ 'Tapenagá' 'Mercedes' 'Valle Fértil' 'Dr. Manuel Belgrano' 'San Fernando'
+ 'Berón de Astrada' 'Picunches' 'Pilcaniyeu' 'Atamisqui' 'Iruya'
+ 'Villaguay' 'Pehuajó' 'Molinos' 'Ñorquín' 'Choya' 'Figueroa' 'Andalgalá'
+ 'Salavina' 'Saavedra' 'Punta Indio' 'Catán Lil' 'General Ocampo'
+ 'Tres Arroyos' 'San Vicente' 'General Lavalle' '9 de julio' 'Ullum'
+ 'Calingasta' 'Valle Grande' 'Guasayán' 'Pomán' 'Gaiman' 'Tafí del Valle'
+ 'San Alberto' 'Bariloche' 'Esquina' 'Tandil' 'Tinogasta' 'Salto' 'Arauco'
+ 'Lobos' 'Tehuelches' 'Paso de los Libres' 'Maracó'
+ 'General Juan F. Quiroga' 'Arrecifes' 'Saladillo' 'Limay Mahuida'
+ 'Castro Barros' 'Ñorquinco' 'La Poma' 'Lago Argentino' 'Chilecito'
+ 'Caucete' 'Iglesia' 'Silípica' 'Ambato' 'Dolores' 'Pinamar' 'Guachipas'
+ 'Mitre' 'Balcarce' 'Deseado' 'General Angel V. Peñaloza' 'Victoria'
+ 'Villa Gesell' 'Sanagasta' 'General Lamadrid' 'Pilar'
+ 'San Blas de los Sauces']",6103115
+2,['CORDOBA'],['Capital' 'Colón'],1428787
+3,['SANTA FE'],['Rosario' 'San Lorenzo'],1235684
+4,['MENDOZA'],"['Capital' 'Las Heras' 'Maipú' 'Godoy Cruz' 'Luján de Cuyo' 'Guaymallén'
+ 'San Martín' 'Junín']",1092919
+5,['TUCUMÁN'],['Capital' 'Tafí Viejo' 'Cruz Alta' 'Yerba Buena' 'Lules'],849858
+6,['BUENOS AIRES'],['La Plata' 'Ensenada' 'Berisso'],756698
+7,['BUENOS AIRES'],['General Pueyrredón'],577010
+8,['SALTA'],['Capital' 'Cerrillos' 'La Caldera'],522382
+9,['SAN JUAN'],"['Chimbas' 'Capital' 'Rawson' 'Rivadavia' 'Santa Lucía' 'Pocito'
+ 'Albardón' 'Angaco']",469964
+10,['SANTA FE'],['La Capital'],439394
+11,['CHACO'],['San Fernando'],379392
+12,['SANTIAGO DEL ESTERO'],['Capital' 'Banda'],356226
+13,['CORRIENTES'],['Capital'],341450
+14,['MISIONES'],['Capital'],317284
+15,['BUENOS AIRES'],['Bahía Blanca'],281172
+16,['ENTRE RÍOS'],['Paraná'],249029
+17,['NEUQUÉN' 'RIO NEGRO'],['Confluencia' 'General Roca'],233014
+18,['FORMOSA'],['Formosa'],216119
+19,['CATAMARCA'],['Capital' 'Valle Viejo' 'Fray Mamerto Esquiú'],193906
+20,['JUJUY'],['Dr. Manuel Belgrano'],187226
+21,['LA RIOJA'],['Capital'],173326
+22,['SAN LUIS'],['La Capital'],169289
+23,['CHUBUT'],['Escalante'],164014
+24,['CORDOBA'],['Río Cuarto'],162032
+25,['ENTRE RÍOS'],['Concordia'],140694
+26,['BUENOS AIRES'],['San Nicolás'],119539
+27,['JUJUY'],['Dr. Manuel Belgrano' 'Palpalá'],117635
+28,['MENDOZA'],['San Rafael'],117378
+29,['BUENOS AIRES'],['Tandil'],110905
+30,['LA PAMPA'],['Capital'],102020
+31,['SAN LUIS'],['General Pedernera'],100173
+32,['RIO NEGRO'],['Bariloche'],97979
+33,['CORDOBA'],['General San Martín'],97114
+34,['CHUBUT'],['Rawson'],96255
+35,['BUENOS AIRES'],['Zárate'],95730
+36,['SANTA CRUZ'],['Güer Aike'],93209
+37,['SANTA FE'],['Castellanos'],89275
+38,['CHACO'],['Comandante Fernández'],88645
+39,['BUENOS AIRES'],['Pergamino'],88512
+40,['BUENOS AIRES'],['Olavarría'],87069
+41,['BUENOS AIRES'],['Junín'],84460
+42,['BUENOS AIRES'],['Necochea'],82941
+43,['CHUBUT'],['Biedma'],81218
+44,['ENTRE RÍOS'],['Gualeguaychú'],80730
+45,['RIO NEGRO'],['General Roca'],76380
+46,['CORDOBA'],['Punilla'],75527
+47,['BUENOS AIRES'],['Luján'],75398
+48,['SANTA FE'],['General López'],75122
+49,['RIO NEGRO'],['General Roca'],74767
+50,['RIO NEGRO' 'BUENOS AIRES'],['Adolfo Alsina' 'Patagones'],72419
+51,['CORDOBA' 'SANTA FE'],['San Justo' 'Castellanos'],71817
+52,['ENTRE RÍOS'],['Uruguay'],71661
+53,['CORRIENTES'],['Goya'],70888
+54,['SANTA FE'],['General Obligado'],70296
+55,['SALTA'],['General José de San Martín'],63928
+56,['BUENOS AIRES'],['Campana'],62666
+57,['MISIONES'],['Oberá'],61595
+58,['MISIONES'],['Eldorado'],57632
+59,['BUENOS AIRES'],['Coronel de Marina Leonardo Rosales'],56647
+60,['LA PAMPA'],['Maracó'],56626
+61,['BUENOS AIRES'],['Chivilcoy'],56160
+62,['BUENOS AIRES'],['Mercedes'],55027
+63,['BUENOS AIRES'],['Azul'],54907
+64,['TIERRA DEL FUEGO'],['Río Grande'],54226
+65,['TIERRA DEL FUEGO'],['Ushuaia'],53240
+66,['BUENOS AIRES'],['San Vicente'],52774
+67,['FORMOSA'],['Pilcomayo'],52590
+68,['TUCUMÁN'],['Chicligasta'],50929
+69,['SANTA CRUZ'],['Deseado'],50629
+70,['CORDOBA'],['Santa María'],48634
+71,['CORDOBA'],['Colón'],48608
+72,['NEUQUÉN'],['Confluencia'],47958
+73,['BUENOS AIRES'],['Tres Arroyos'],46482
+74,['CORDOBA'],['Tercero Arriba'],46421
+75,['SANTA FE'],['Constitución'],45351
+76,['JUJUY'],['El Carmen'],44931
+77,['BUENOS AIRES'],['San Pedro'],44046
+78,['CORRIENTES'],['Paso de los Libres'],41159
+79,['MISIONES'],['Iguazú'],41062
+80,['CHACO'],['Mayor Luis J. Fontana'],40518
+81,['ENTRE RÍOS'],['Gualeguay'],40488
+82,['SANTA FE'],['Las Colonias'],39049
+83,['CORDOBA'],['San Alberto' 'San Javier'],38905
+84,['BUENOS AIRES'],['Balcarce'],37404
+85,['BUENOS AIRES'],['9 de Julio'],34740
+86,['CORDOBA'],['Río Segundo'],34448
+87,['CORRIENTES'],['Curuzú Cuatiá'],34359
+88,['CORDOBA'],['Punilla'],34281
+89,['SANTA FE'],['Caseros'],34257
+90,['BUENOS AIRES'],['Bragado'],34209
+91,['LA RIOJA'],['Chilecito'],33367
+92,['CORDOBA'],['Punilla'],33329
+93,['CORRIENTES'],['Mercedes'],33088
+94,['BUENOS AIRES'],['Chascomús'],32537
+95,['SANTIAGO DEL ESTERO'],['Río Hondo'],32166
+96,['ENTRE RÍOS'],['Federación'],31966
+97,['CHUBUT'],['Futaleufú'],31887
+98,['BUENOS AIRES'],['Trenque Lauquen'],31689
+99,['ENTRE RÍOS'],['Villaguay'],31537
+100,['BUENOS AIRES'],['Pehuajó'],30903
+101,['BUENOS AIRES'],['Lobos'],30752
+102,['CORDOBA'],['Cruz del Eje'],30680
+103,['MENDOZA'],['Rivadavia'],30180
+104,['MENDOZA'],['Tunuyán'],29916
+105,['ENTRE RÍOS'],['Victoria'],29412
+106,['MENDOZA'],['General Alvear'],29323
+107,['BUENOS AIRES'],['Cañuelas'],29280
+108,['SANTA FE'],['Iriondo'],29205
+109,['SAN JUAN'],['Caucete'],28811
+110,['BUENOS AIRES'],['Villa Gesell'],28149
+111,['CHACO'],['Libertador General San Martín'],28124
+112,['BUENOS AIRES'],['General Alvarado'],27474
+113,['BUENOS AIRES'],['Salto'],27437
+114,['CHACO'],['General Güemes'],27201
+115,['CORDOBA'],['Marcos Juárez'],27004
+116,['BUENOS AIRES'],['Baradero'],26911
+117,['SANTIAGO DEL ESTERO'],['Choya'],26649
+118,['BUENOS AIRES'],['Bolívar'],26364
+119,['BUENOS AIRES'],['Saladillo'],26086
+120,['BUENOS AIRES'],['La Costa'],26062
+121,['TUCUMÁN'],['Famaillá'],25485
+122,['BUENOS AIRES'],['Arrecifes'],25107
+123,['BUENOS AIRES'],['Dolores'],24249
+124,['CHACO'],['Quitilipi'],24152
+125,['TUCUMÁN'],['Monteros'],24035
+126,['BUENOS AIRES'],['Pinamar'],23816
+127,['BUENOS AIRES'],['Coronel Suárez'],23621
+128,['BUENOS AIRES'],['25 de Mayo'],23598
+129,['MISIONES'],['Apóstoles'],23572
+130,['ENTRE RÍOS'],['La Paz'],23528
+131,['NEUQUÉN'],['Confluencia'],23303
+132,['ENTRE RÍOS'],['Colón'],23222
+133,['BUENOS AIRES'],['Colón'],23216
+134,['CORRIENTES'],['Santo Tomé'],23045
+135,['CHACO'],['9 de Julio'],22953
+136,['MISIONES'],['San Ignacio'],22491
+137,['NEUQUÉN'],['Lácar'],22477
+138,['ENTRE RÍOS'],['Nogoyá'],22461
+139,['BUENOS AIRES'],['La Costa'],22427
+140,['SANTIAGO DEL ESTERO'],['General Taboada'],22185
+141,['CORRIENTES'],['Monte Caseros'],22101
+142,['SANTA FE'],['La Capital'],21693
+143,['BUENOS AIRES'],['Las Flores'],21455
+144,['TUCUMÁN'],['Lules'],21000
+145,['CORRIENTES'],['Esquina'],20989
+146,['MISIONES'],['Leandro N. Alem'],20933
+147,['SANTA CRUZ'],['Deseado'],20889
+148,['MENDOZA'],['Malargüe'],20875
+149,['CORDOBA'],['Presidente Roque Sáenz Peña'],20534

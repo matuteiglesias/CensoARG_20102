@@ -1,0 +1,23 @@
+,n,%
+Mayores de 3 anos:,'P07_TOTAL',
+Sabe Leer:,,
+Si,'P07_1 Si','%_P07_1 Si'
+No,'P07_2 No','%_P07_1 No'
+Usa PC,,
+Si,'P12_1 Si','%_P12_1 Si'
+No,'P12_2 No','%_P12_1 No'
+Asistenca a escuela,,
+Asiste,'P08_1 Asiste','%_P08_1 Asiste'
+Asistio,'P08_2 Asistio','%_P08_2 Asistio'
+No Asistio,'P08_3 Nunca asistio','%_P08_3 Nunca asistio'
+Nivel Educativo,,
+Inicial,"'P09_1 Inicial (jardin, preescolar)'","'%_P09_1 Inicial (jardin, preescolar)'"
+Primario,'P09_2 Primario','%_P09_2 Primario'
+Secundario,'P09_4 Secundario','%_P09_4 Secundario'
+Terc. no univ,'P09_6 Superior no universitario','%_P09_6 Superior no universitario'
+Universitario,'P09_7 Universitario','%_P09_7 Universitario'
+Postgrado,'P09_8 Post universitario','%_P09_8 Post universitario'
+Especial,'P09_9 Educacion especial','%_P09_9 Educacion especial'
+Terminado,,
+Si,'P10_1 Si','%_P10_1 Si'
+No,'P10_2 No','%_P10_2 No'

@@ -1,0 +1,3819 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Atlas distritos}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{warnings}
+        \PY{n}{warnings}\PY{o}{.}\PY{n}{filterwarnings}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ignore}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{core}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{display}\PY{p}{,} \PY{n}{HTML}
+        \PY{n}{display}\PY{p}{(}\PY{n}{HTML}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZlt{}style\PYZgt{}.container }\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{ width:100}\PY{l+s+s2}{\PYZpc{}}\PY{l+s+s2}{ !important; \PYZcb{}\PYZlt{}/style\PYZgt{}}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{p}{)}
+        \PY{k+kn}{from} \PY{n+nn}{satellite} \PY{k}{import} \PY{o}{*}
+        
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}\PY{p}{;} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{geopandas} \PY{k}{as} \PY{n+nn}{gpd}\PY{p}{;} \PY{k+kn}{from} \PY{n+nn}{shapely}\PY{n+nn}{.}\PY{n+nn}{ops} \PY{k}{import} \PY{n}{cascaded\PYZus{}union}
+        
+        \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{n}{pd}\PY{o}{.}\PY{n}{options}\PY{o}{.}\PY{n}{display}\PY{o}{.}\PY{n}{max\PYZus{}rows} \PY{o}{=} \PY{l+m+mi}{160}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<IPython.core.display.HTML object>
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} Algunos resultados de mezclar Censo con EPH y  circuitos electorales}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Cargamos poligonos de mapas}
+        \PY{n}{gdf2} \PY{o}{=} \PY{n}{gpd}\PY{o}{.}\PY{n}{read\PYZus{}file}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./../EleccionesARG/data/circuitos/custom/BA\PYZus{}custom\PYZus{}areas.shp}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{gdf2} \PY{o}{=} \PY{n}{gdf2}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{819}\PY{p}{,} \PY{l+m+mi}{818}\PY{p}{,} \PY{l+m+mi}{823}\PY{p}{]}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} gdf2.loc[gdf2.dpto\PYZus{}merge == \PYZsq{}san fernando\PYZsq{}].sort\PYZus{}values(by = \PYZsq{}area\PYZus{}1\PYZsq{}).area \PYZsh{}islas gdes de san fernando}
+        \PY{c+c1}{\PYZsh{} numero de electores}
+        \PY{n}{electoresxlugar} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./n\PYZus{}electores.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index\PYZus{}col}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{electores\PYZus{}area0} \PY{o}{=} \PY{n}{electoresxlugar}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{n}{level} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} cat\PYZus{}ocups}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} cat\PYZus{}ocups = pd.read\PYZus{}csv(\PYZsq{}./cat\PYZus{}ocups.csv\PYZsq{}, index\PYZus{}col=[0], skiprows=3)}
+        \PY{c+c1}{\PYZsh{} cat\PYZus{}ocups.columns = [\PYZsq{}x\PYZsq{}, \PYZsq{}Desocupado\PYZsq{}, \PYZsq{}y\PYZsq{},\PYZsq{}Jubilado\PYZsq{}, \PYZsq{}Estudiante\PYZsq{}, \PYZsq{}Ama de casa\PYZsq{}, \PYZsq{}Otros\PYZsq{}, \PYZsq{}Rentista\PYZsq{}, \PYZsq{}Cta Propia\PYZsq{}, \PYZsq{}Obrero\PYZsq{}, \PYZsq{}z\PYZsq{}, \PYZsq{}Patron\PYZsq{}]}
+        \PY{c+c1}{\PYZsh{} cat\PYZus{}ocups = cat\PYZus{}ocups.reindex(cat\PYZus{}ocups.sum().sort\PYZus{}values(ascending = False).index[:6], axis = 1).fillna(1)}
+        \PY{c+c1}{\PYZsh{} cat\PYZus{}ocups = cat\PYZus{}ocups}
+        \PY{c+c1}{\PYZsh{} cat\PYZus{}ocups[\PYZsq{}otros/err\PYZsq{}] = 100\PYZhy{}cat\PYZus{}ocups.sum(1)}
+        
+        \PY{c+c1}{\PYZsh{} cat\PYZus{}ocups\PYZus{} = pd.concat([cat\PYZus{}ocups, electores\PYZus{}area0], 1)}
+        
+        \PY{c+c1}{\PYZsh{} show = cat\PYZus{}ocups\PYZus{}.sample(20).sort\PYZus{}values(by = \PYZsq{}Obrero\PYZsq{}).round(1)}
+        \PY{c+c1}{\PYZsh{} show}
+        \PY{c+c1}{\PYZsh{} \PYZsh{} import seaborn as sns}
+        \PY{c+c1}{\PYZsh{} \PYZsh{} cm = sns.light\PYZus{}palette(\PYZdq{}green\PYZdq{}, as\PYZus{}cmap=True)}
+        \PY{c+c1}{\PYZsh{} \PYZsh{} s = show.style.background\PYZus{}gradient(cmap=cm, subset = [\PYZsq{}Obrero\PYZsq{}, \PYZsq{}Jubilado\PYZsq{}])}
+        \PY{c+c1}{\PYZsh{} \PYZsh{} s}
+        
+        
+        \PY{c+c1}{\PYZsh{} \PYZsh{} En el interior hay una piramide un poquito mas envejecida}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{votos} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./votos\PYZus{}area\PYZus{}pct.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index\PYZus{}col}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{header} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        
+        \PY{n}{votos}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ELECTORES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ELECTORES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ELECTORES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VOTANTES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VOTANTES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+               \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VOTANTES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CAMBIEMOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CAMBIEMOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CAMBIEMOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FPV / UC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FPV / UC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FPV / UC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Massa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Massa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Massa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BLANCOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BLANCOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BLANCOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+               \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FJ (Randazzo)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FJ (Randazzo)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FIT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FIT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FIT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{cols} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{zip}\PY{p}{(}\PY{n}{votos}\PY{o}{.}\PY{n}{columns}\PY{p}{,} \PY{n}{votos}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+        \PY{n}{c1} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{MultiIndex}\PY{o}{.}\PY{n}{from\PYZus{}tuples}\PY{p}{(}\PY{n}{cols}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fuerza}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Eleccion}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n}{votos} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{votos}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{c1}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n}{votos}\PY{o}{.}\PY{n}{index}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+        \PY{n}{votos}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{names} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{area\PYZus{}0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{votos} \PY{o}{=} \PY{n}{votos}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{c+c1}{\PYZsh{}.astype(int)}
+        
+        \PY{c+c1}{\PYZsh{} votos.sample(3).sample(3, axis = 1)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Dataset votos}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} votos = pd.read\PYZus{}csv(\PYZsq{}./../../Documents/EleccionesARG/data/tablas\PYZus{}votos/VOTOS\PYZus{}2015\PYZus{}17\PYZus{}circ\PYZus{}cnt.csv\PYZsq{}, index\PYZus{}col=[0, 1, 2], header = [0])}
+        \PY{n}{votos} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./votos\PYZus{}comb.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index\PYZus{}col}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{header} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} Toda esta vuelta es para ponerle nombres familiares a las listas. Pandas no deja setear nombres repetidos en nivel de multiindex}
+        \PY{n}{votos}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ELECTORES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ELECTORES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ELECTORES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VOTANTES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VOTANTES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+               \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{VOTANTES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CAMBIEMOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CAMBIEMOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CAMBIEMOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FPV / UC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FPV / UC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FPV / UC}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Massa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Massa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Massa}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BLANCOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BLANCOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{BLANCOS}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+               \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FJ (Randazzo)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FJ (Randazzo)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FIT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FIT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{FIT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{cols} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{zip}\PY{p}{(}\PY{n}{votos}\PY{o}{.}\PY{n}{columns}\PY{p}{,} \PY{n}{votos}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+        \PY{n}{c1} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{MultiIndex}\PY{o}{.}\PY{n}{from\PYZus{}tuples}\PY{p}{(}\PY{n}{cols}\PY{p}{,} \PY{n}{names}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fuerza}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Eleccion}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n}{votos} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{votos}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{values}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{c1}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{n}{votos}\PY{o}{.}\PY{n}{index}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+        \PY{n}{votos}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{names} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{area\PYZus{}0}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{area\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{votos} \PY{o}{=} \PY{n}{votos}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} votos.head()}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{}\PYZsh{} Ej. ingresos por circuito}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Ingresos por partido y circuito. Se hace proyectando resultados EPH (Indec 2016\PYZhy{}18) con la base individual del Censo 2010.}
+         \PY{c+c1}{\PYZsh{} Se cruzan los poligonos de radios censales a distritos electorales.}
+         \PY{c+c1}{\PYZsh{} Pesos deflactados en base a cavallo/pricestats. Serian pesos corrientes a nivel de Sep. 18.}
+         \PY{c+c1}{\PYZsh{} Para \PYZsq{}proyectar\PYZsq{} la encuenta permanente de hogares con el censo se usa un modelo de random forests (machine learning). }
+         \PY{c+c1}{\PYZsh{} En base a las caracteristicas de la persona y la vivienda segun censo se predice ingreso con info de EPH}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{result\PYZus{}comb} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{./result\PYZus{}comb\PYZus{}circ.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{header} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{index\PYZus{}col} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} show = result\PYZus{}comb.sort\PYZus{}values(by = (\PYZsq{}Ingresos (basado en EPH)\PYZsq{},\PYZsq{}electores\PYZsq{})).tail(30).sort\PYZus{}index().sort\PYZus{}values(by = (\PYZsq{}Ingresos (basado en EPH)\PYZsq{},\PYZsq{}mediana\PYZsq{}))}
+         \PY{c+c1}{\PYZsh{} show}
+         \PY{c+c1}{\PYZsh{} \PYZsh{} import seaborn as sns}
+         \PY{c+c1}{\PYZsh{} \PYZsh{} cm = sns.light\PYZus{}palette(\PYZdq{}green\PYZdq{}, as\PYZus{}cmap=True)}
+         \PY{c+c1}{\PYZsh{} \PYZsh{} s = show.style.background\PYZus{}gradient(cmap=cm)}
+         \PY{c+c1}{\PYZsh{} \PYZsh{} s}
+         
+         
+         \PY{c+c1}{\PYZsh{} \PYZsh{} \PYZsh{} Ingresos medios por distrito. Esto esta graficado vs votos en los scatterplots}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{k+kn}{from} \PY{n+nn}{IPython}\PY{n+nn}{.}\PY{n+nn}{display} \PY{k}{import} \PY{n}{display}\PY{p}{,} \PY{n}{Markdown}\PY{p}{,} \PY{n}{Latex}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{} Atlas Distritos}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}\PYZsh{} Consulta de distritos electorales}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{atlas-distritos}{%
+\section{Atlas Distritos}\label{atlas-distritos}}
+
+    
+    \hypertarget{consulta-de-distritos-electorales}{%
+\subsection{Consulta de distritos
+electorales}\label{consulta-de-distritos-electorales}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c}{\PYZpc{}\PYZpc{}latex}
+         \PY{k}{\PYZbs{}newpage}
+\end{Verbatim}
+
+
+    \newpage
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}\PYZsh{} Indice.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ordenados por cantidad de electores. Aqui porc. y acumulado de electores por partido.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{***Si no se encuentra, buscar con Ctrl+F***}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+         \PY{n}{electores\PYZus{}por\PYZus{}area} \PY{o}{=} \PY{n}{votos}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{level} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{p}{[}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ELECTORES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DN\PYZus{}2017}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}\PY{p}{]}
+         \PY{n}{sorted\PYZus{}} \PY{o}{=} \PY{n}{electores\PYZus{}por\PYZus{}area}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ELECTORES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DN\PYZus{}2017}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{ascending} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{orden} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{100} \PY{o}{*} \PY{n}{sorted\PYZus{}}\PY{o}{/}\PY{n}{sorted\PYZus{}}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{round}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{;} \PY{n}{orden}\PY{o}{.}\PY{n}{columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{porcentaje (}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+         \PY{n}{orden}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{acumulado (}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{orden}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{porcentaje (}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{p}{)}
+         \PY{n}{orden}\PY{c+c1}{\PYZsh{}.loc[pd.Index([i for i in orden.index if \PYZsq{}Secci\PYZsq{} not in i])]}
+\end{Verbatim}
+
+
+    \hypertarget{indice.}{%
+\subsection{Indice.}\label{indice.}}
+
+    
+    Ordenados por cantidad de electores. Aqui porc. y acumulado de electores
+por partido.
+
+    
+    \textbf{\emph{Si no se encuentra, buscar con Ctrl+F}}
+
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:}                        porcentaje (\%)  acumulado (\%)
+         area\_0                                              
+         la matanza                        7.0            7.0
+         la plata                          3.7           10.7
+         general pueyrredon                3.7           14.4
+         lomas de zamora                   3.4           17.8
+         quilmes                           3.1           20.9
+         almirante brown                   2.9           23.8
+         merlo                             2.7           26.5
+         lanus                             2.6           29.1
+         moreno                            2.3           31.4
+         general san martin                2.3           33.7
+         florencio varela                  2.1           35.8
+         tigre                             2.0           37.8
+         avellaneda                        2.0           39.8
+         tres de febrero                   1.9           41.7
+         san isidro                        1.9           43.6
+         moron                             1.8           45.4
+         malvinas argentinas               1.7           47.1
+         berazategui                       1.7           48.8
+         bahia blanca                      1.6           50.4
+         vicente lopez                     1.6           52.0
+         pilar                             1.6           53.6
+         san miguel                        1.5           55.1
+         esteban echeverria                1.5           56.6
+         Resto 6a Seccion                  1.5           58.1
+         jose c. paz                       1.4           59.5
+         comuna 13                         1.4           60.9
+         comuna 14                         1.4           62.3
+         comuna 12                         1.2           63.5
+         escobar                           1.2           64.7
+         comuna 04                         1.2           65.9
+         comuna 01                         1.2           67.1
+         comuna 07                         1.1           68.2
+         comuna 11                         1.1           69.3
+         comuna 15                         1.1           70.4
+         comuna 06                         1.1           71.5
+         comuna 03                         1.0           72.5
+         comuna 05                         1.0           73.5
+         hurlingham                        1.0           74.5
+         comuna 10                         1.0           75.5
+         comuna 09                         1.0           76.5
+         ituzaingo                         0.9           77.4
+         comuna 02                         0.9           78.3
+         comuna 08                         0.9           79.2
+         san fernando                      0.9           80.1
+         ezeiza                            0.9           81.0
+         Resto 5a Seccion                  0.8           81.8
+         san nicolas                       0.8           82.6
+         Resto 4a Seccion                  0.8           83.4
+         tandil                            0.7           84.1
+         zarate                            0.6           84.7
+         olavarria                         0.6           85.3
+         pergamino                         0.6           85.9
+         lujan                             0.6           86.5
+         Resto 2a Seccion                  0.5           87.0
+         necochea                          0.5           87.5
+         junin                             0.5           88.0
+         campana                           0.5           88.5
+         berisso                           0.5           89.0
+         general rodriguez                 0.5           89.5
+         la costa                          0.5           90.0
+         presidente peron                  0.4           90.4
+         chivilcoy                         0.4           90.8
+         azul                              0.4           91.2
+         san vicente                       0.4           91.6
+         mercedes                          0.4           92.0
+         ensenada                          0.3           92.3
+         tres arroyos                      0.3           92.6
+         san pedro                         0.3           92.9
+         Resto 1a Seccion                  0.3           93.2
+         marcos paz                        0.3           93.5
+         canuelas                          0.3           93.8
+         Resto 3a Seccion                  0.3           94.1
+         chacabuco                         0.3           94.4
+         nueve de julio                    0.3           94.7
+         balcarce                          0.3           95.0
+         trenque lauquen                   0.3           95.3
+         chascomus                         0.2           95.5
+         lincoln                           0.2           95.7
+         bragado                           0.2           95.9
+         general alvarado                  0.2           96.1
+         pehuajo                           0.2           96.3
+         coronel suarez                    0.2           96.5
+         lobos                             0.2           96.7
+         veinticinco de mayo               0.2           96.9
+         bolivar                           0.2           97.1
+         villa gesell                      0.2           97.3
+         salto                             0.2           97.5
+         baradero                          0.2           97.7
+         exaltacion de la cruz             0.2           97.9
+         ramallo                           0.2           98.1
+         pinamar                           0.2           98.3
+         saladillo                         0.2           98.5
+         patagones                         0.2           98.7
+         Resto 7a Seccion                  0.2           98.9
+         villarino                         0.2           99.1
+         general villegas                  0.2           99.3
+         bartolome mitre                   0.2           99.5
+         dolores                           0.2           99.7
+         mar chiquita                      0.2           99.9
+         brandsen                          0.2          100.1
+         las flores                        0.1          100.2
+         colon                             0.1          100.3
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c}{\PYZpc{}\PYZpc{}latex}
+         \PY{k}{\PYZbs{}newpage}
+\end{Verbatim}
+
+
+    \newpage
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{k}{for} \PY{n}{area} \PY{o+ow}{in} \PY{n}{orden}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{values}\PY{p}{:}
+        \PY{c+c1}{\PYZsh{} for area in [\PYZsq{}la plata\PYZsq{}, \PYZsq{}general pueyrredon\PYZsq{}, \PYZsq{}bahia blanca\PYZsq{}]:}
+        
+            \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}\PYZsh{} Lugar: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+            \PY{n+nb}{print}\PY{p}{(}\PY{n}{area}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{}Mostrar ingresos por circuito}
+            \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Percentil ingresos por circuito: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+            \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ingresos en pesos corrientes de Sep\PYZhy{}2018. Quantiles 25}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{, 75}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ y mediana.}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        
+            \PY{n}{display}\PY{p}{(}\PY{n}{result\PYZus{}comb}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{area}\PY{p}{]}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by} \PY{o}{=} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Ingresos (basado en EPH)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{mediana}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            
+            \PY{n}{area\PYZus{}df} \PY{o}{=} \PY{n}{gdf2}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{gdf2}\PY{o}{.}\PY{n}{area\PYZus{}0} \PY{o}{==} \PY{n}{area}\PY{p}{]}
+            
+            \PY{n}{geom} \PY{o}{=} \PY{n}{area\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{geometry}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+            
+            \PY{k}{if} \PY{n}{area}\PY{p}{[}\PY{l+m+mi}{9}\PY{p}{:}\PY{p}{]} \PY{o}{==} \PY{l+s+sa}{u}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Secci}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                \PY{n}{zoom} \PY{o}{=} \PY{l+m+mi}{10}
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{zf} \PY{o}{=} \PY{l+m+mi}{13} \PY{o}{\PYZhy{}} \PY{l+m+mf}{1.5}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{gpd}\PY{o}{.}\PY{n}{GeoSeries}\PY{p}{(}\PY{n}{cascaded\PYZus{}union}\PY{p}{(}\PY{n}{area\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{geometry}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{length}\PY{p}{)}
+                \PY{n}{zoom} \PY{o}{=} \PY{n+nb}{int}\PY{p}{(}\PY{n+nb}{round}\PY{p}{(}\PY{n}{zf}\PY{p}{)}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}     if (area == \PYZsq{}la plata\PYZsq{}): zoom = 14}
+        \PY{c+c1}{\PYZsh{}     if (area == \PYZsq{}general pueyrredon\PYZsq{}): zoom = 13}
+                
+            \PY{n}{bounds} \PY{o}{=} \PY{n}{gpd}\PY{o}{.}\PY{n}{GeoSeries}\PY{p}{(}\PY{n}{cascaded\PYZus{}union}\PY{p}{(}\PY{n}{area\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{geometry}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{bounds}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                
+            \PY{n}{final} \PY{o}{=} \PY{n}{get\PYZus{}maps\PYZus{}image}\PY{p}{(}\PY{n}{bounds}\PY{p}{,} \PY{n}{zoom} \PY{o}{=} \PY{n}{zoom}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} Poly}
+            \PY{n}{scale\PYZus{}x} \PY{o}{=} \PY{n}{final}\PY{o}{.}\PY{n}{width}\PY{o}{/}\PY{p}{(}\PY{n}{bounds}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{bounds}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+            \PY{n}{scale\PYZus{}y} \PY{o}{=} \PY{n}{final}\PY{o}{.}\PY{n}{height}\PY{o}{/}\PY{p}{(}\PY{n}{bounds}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{bounds}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        
+            \PY{n}{scaled} \PY{o}{=} \PY{n}{area\PYZus{}df}\PY{o}{.}\PY{n}{scale}\PY{p}{(}\PY{n}{xfact}\PY{o}{=}\PY{n}{scale\PYZus{}x}\PY{p}{,} \PY{n}{yfact}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{n}{scale\PYZus{}y}\PY{p}{,} \PY{n}{origin}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}
+            \PY{c+c1}{\PYZsh{} Translate (we need to know the center)}
+            \PY{n}{scaled\PYZus{}area} \PY{o}{=} \PY{n}{gpd}\PY{o}{.}\PY{n}{GeoSeries}\PY{p}{(}\PY{n}{cascaded\PYZus{}union}\PY{p}{(}\PY{n}{scaled}\PY{p}{)}\PY{p}{)}
+            \PY{n}{centerx}\PY{p}{,} \PY{n}{centery} \PY{o}{=} \PY{p}{(}\PY{n}{scaled\PYZus{}area}\PY{o}{.}\PY{n}{bounds}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{maxx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{scaled\PYZus{}area}\PY{o}{.}\PY{n}{bounds}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{minx}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{2.}\PY{p}{,} \PY{p}{(}\PY{n}{scaled\PYZus{}area}\PY{o}{.}\PY{n}{bounds}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{maxy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{+} \PY{n}{scaled\PYZus{}area}\PY{o}{.}\PY{n}{bounds}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{miny}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{2.}
+            \PY{n}{trans} \PY{o}{=} \PY{n}{scaled}\PY{o}{.}\PY{n}{translate}\PY{p}{(}\PY{n}{final}\PY{o}{.}\PY{n}{width}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{centerx}\PY{p}{,}\PY{n}{final}\PY{o}{.}\PY{n}{height}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{centery}\PY{p}{)}
+        
+            \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}\PYZsh{}\PYZsh{}\PYZsh{} Mapa: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        
+            \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{16}\PY{p}{)}\PY{p}{)}
+            \PY{n}{ax}\PY{o}{.}\PY{n}{imshow}\PY{p}{(}\PY{n}{final}\PY{p}{)}
+            \PY{n}{ax}\PY{o}{.}\PY{n}{axis}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{off}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+            \PY{n}{area\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{coords}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{trans}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{representative\PYZus{}point}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{coords}\PY{p}{[}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+            \PY{n}{area\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{coords}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{coords}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{k}{for} \PY{n}{coords} \PY{o+ow}{in} \PY{n}{area\PYZus{}df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{coords}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+        
+            \PY{n}{minx}\PY{p}{,} \PY{n}{maxx} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{final}\PY{o}{.}\PY{n}{width}
+            \PY{n}{miny}\PY{p}{,} \PY{n}{maxy} \PY{o}{=} \PY{n}{final}\PY{o}{.}\PY{n}{height}\PY{p}{,} \PY{l+m+mi}{0}
+            
+        \PY{c+c1}{\PYZsh{}     print(final.width)}
+        \PY{c+c1}{\PYZsh{}     print(final.height)}
+            \PY{n}{offset} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{30}
+            
+            \PY{k}{if} \PY{p}{(}\PY{n}{area} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{la plata}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                \PY{n}{q} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{15} \PY{c+c1}{\PYZsh{} Hackeo para que se vean bien }
+                \PY{n}{minx}\PY{p}{,} \PY{n}{maxx} \PY{o}{=} \PY{l+m+mi}{720}\PY{p}{,} \PY{l+m+mi}{1200}
+                \PY{n}{miny}\PY{p}{,} \PY{n}{maxy} \PY{o}{=} \PY{l+m+mi}{2821}\PY{p}{,} \PY{l+m+mi}{2400}
+                \PY{n}{offset} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{60}
+                
+            \PY{k}{if} \PY{p}{(}\PY{n}{area} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{general pueyrredon}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                \PY{n}{q} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{15} \PY{c+c1}{\PYZsh{} Hackeo para que se vean bien }
+                \PY{n}{minx}\PY{p}{,} \PY{n}{maxx} \PY{o}{=} \PY{l+m+mi}{1000}\PY{p}{,} \PY{l+m+mi}{1600}
+                \PY{n}{miny}\PY{p}{,} \PY{n}{maxy} \PY{o}{=} \PY{l+m+mi}{1600}\PY{p}{,} \PY{l+m+mi}{700}
+                \PY{n}{offset} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{5}
+                
+            \PY{k}{if} \PY{p}{(}\PY{n}{area} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bahia blanca}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                \PY{n}{q} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{15} \PY{c+c1}{\PYZsh{} Hackeo para que se vean bien }
+                \PY{n}{minx}\PY{p}{,} \PY{n}{maxx} \PY{o}{=} \PY{l+m+mi}{700}\PY{p}{,} \PY{l+m+mi}{1300}
+                \PY{n}{miny}\PY{p}{,} \PY{n}{maxy} \PY{o}{=} \PY{l+m+mi}{1690}\PY{p}{,} \PY{l+m+mi}{1000}
+                
+            \PY{k}{if} \PY{p}{(}\PY{n}{area} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{comuna 04}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:} \PY{n}{offset} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{60}
+            \PY{k}{if} \PY{p}{(}\PY{n}{area} \PY{o+ow}{in} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avellaneda, berazategui, san miguel, comuna 13, comuna 14, comuna 01, comuna 02, campana}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:} \PY{n}{offset} \PY{o}{=} \PY{l+m+mi}{0}
+                
+            \PY{n}{trans}\PY{o}{.}\PY{n}{translate}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{offset}\PY{p}{)}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{ax} \PY{o}{=} \PY{n}{ax}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{facecolor}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{none}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{edgecolor}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{linewidth} \PY{o}{=} \PY{l+m+mf}{1.5}\PY{p}{)} \PY{c+c1}{\PYZsh{}color = \PYZsq{}\PYZsh{}ff7f0e\PYZsq{},}
+            \PY{k}{for} \PY{n}{idx}\PY{p}{,} \PY{n}{row} \PY{o+ow}{in} \PY{n}{area\PYZus{}df}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                \PY{n}{x}\PY{p}{,} \PY{n}{y} \PY{o}{=} \PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{coords}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{;} \PY{n}{y} \PY{o}{+}\PY{o}{=} \PY{n}{offset}
+                \PY{k}{if} \PY{p}{(}\PY{n}{minx} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{x} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{maxx}\PY{p}{)} \PY{o+ow}{and} \PY{p}{(}\PY{n}{maxy} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{y} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{miny}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{ax}\PY{o}{.}\PY{n}{annotate}\PY{p}{(}\PY{n}{s} \PY{o}{=} \PY{n}{row}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{area\PYZus{}1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{xy} \PY{o}{=} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{,} \PY{n}{horizontalalignment}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{center}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{15}\PY{p}{,} \PY{n}{color} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontweight}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bold}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{backgroundcolor} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.9}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{alpha} \PY{o}{=} \PY{o}{.}\PY{l+m+mi}{7}\PY{p}{)}
+            
+            \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{n}{minx}\PY{p}{,} \PY{n}{maxx}\PY{p}{)}
+            \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{n}{miny}\PY{p}{,} \PY{n}{maxy}\PY{p}{)} 
+            \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+            
+            \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}\PYZsh{}\PYZsh{} Numeros de votos. 2015\PYZhy{}17: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        
+            \PY{c+c1}{\PYZsh{}\PYZsh{}\PYZsh{} Tabla votos:}
+            \PY{n}{votos\PYZus{}area} \PY{o}{=} \PY{n}{votos}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{area}\PY{p}{]}\PY{o}{.}\PY{n}{astype}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}\PY{c+c1}{\PYZsh{}.stack()}
+            \PY{n}{max\PYZus{}votos} \PY{o}{=} \PY{n}{votos\PYZus{}area}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{level} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+            \PY{n}{orden} \PY{o}{=} \PY{n}{max\PYZus{}votos}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{index}
+            \PY{n}{votos\PYZus{}area} \PY{o}{=} \PY{n}{votos\PYZus{}area}\PY{o}{.}\PY{n}{stack}\PY{p}{(}\PY{p}{)}\PY{p}{[}\PY{n}{orden}\PY{p}{]}
+            \PY{n}{votos\PYZus{}area}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Resto}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{votos\PYZus{}area}\PY{o}{.}\PY{n}{VOTANTES} \PY{o}{\PYZhy{}} \PY{n}{votos\PYZus{}area}\PY{o}{.}\PY{n}{iloc}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}
+        
+            \PY{n}{ix} \PY{o}{=} \PY{n}{votos\PYZus{}area}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ELECTORES}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{tail}\PY{p}{(}\PY{l+m+mi}{21}\PY{p}{)}\PY{o}{.}\PY{n}{index}\PY{o}{.}\PY{n}{get\PYZus{}level\PYZus{}values}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{drop\PYZus{}duplicates}\PY{p}{(}\PY{p}{)}
+            \PY{n}{votos\PYZus{}area\PYZus{}show} \PY{o}{=} \PY{n}{votos\PYZus{}area}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{n}{ix}\PY{p}{]}
+            \PY{n}{votos\PYZus{}area\PYZus{}show} \PY{o}{=} \PY{n}{votos\PYZus{}area\PYZus{}show}\PY{o}{.}\PY{n}{reindex}\PY{p}{(}\PY{n}{pd}\PY{o}{.}\PY{n}{MultiIndex}\PY{o}{.}\PY{n}{from\PYZus{}product}\PY{p}{(}\PY{p}{[}\PY{n+nb}{list}\PY{p}{(}\PY{n}{ix}\PY{p}{)}\PY{p}{,} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DN\PYZus{}2017}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{paso\PYZus{}2017}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{DN\PYZus{}2015}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+            \PY{n}{votos\PYZus{}area\PYZus{}show}
+            \PY{n}{display}\PY{p}{(}\PY{n}{Markdown}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{votos por circuito. (puede omitir pequenos)}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+        
+            \PY{n}{display}\PY{p}{(}\PY{n}{votos\PYZus{}area\PYZus{}show}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+la matanza
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0635E                      5870    8830  12480     41200
+0635D                      5620    8860  12480     44800
+0635A                      6090    9230  13640    104600
+00635                      6140    9320  13660    115900
+0635C                      6350    9620  13530     51700
+0631D                      5980   10090  15470     36900
+0629B                      6620   10150  14560     37300
+0631A                      6530   10350  15310     47000
+0635B                      6740   10370  14800    103000
+00629                      6750   10450  15360     33300
+0631C                      5890   10640  16340     16900
+0629A                      6980   10750  15630     61800
+00633                      7040   11050  15780     69000
+0632A                      6730   11600  16820     17200
+00634                      7280   12140  17600     30200
+0626A                      7280   12140  17360     38900
+00631                      7200   12170  17370     30100
+00627                      6640   12210  18070     17600
+00632                      7540   12530  17750     11800
+0632B                      7980   12580  16720      3300
+0631B                      8070   13050  19720      8200
+00626                      8000   13140  18710     71800
+00630                      8020   13440  19030     35600
+00628                      8620   13850  19690     50500
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_6.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  FPV / UC  CAMBIEMOS  Massa  Resto
+00628 DN_2017        50543     40968      8782      23364   3768   5054
+      paso_2017      49856     39035      7913      20384   5201   5537
+      DN_2015        49006     40403      8649      19203   6777   5774
+0635C DN_2017        51734     40621     26296       7578   2989   3758
+      paso_2017      49622     39393     23259       5362   3940   6832
+      DN_2015        42713     34927     20992       4574   5842   3519
+00633 DN_2017        69041     45019     15243      17041   4898   7837
+      paso_2017      66896     40954     12720      13390   6264   8580
+      DN_2015        52345     39567     14238      12980   9161   3188
+0629A DN_2017        61788     46007     22345      10530   3974   9158
+      paso_2017      60381     42444     20071       8161   5247   8965
+      DN_2015        57821     43277     20300       7133   8202   7642
+00626 DN_2017        71814     45892     12860      20318   4736   7978
+      paso_2017      69031     42166     11170      15671   6184   9141
+      DN_2015        79715     46224     12251      15444   8740   9789
+0635A DN_2017       104593     75685     42574      14856   5439  12816
+      paso_2017     101574     71747     37482      11043   7650  15572
+      DN_2015        85205     68580     39095      10280  12048   7157
+0635B DN_2017       103042     84504     47768      18178   7049  11509
+      paso_2017      98445     78758     41822      13430   9124  14382
+      DN_2015       107608     83050     43154      13063  14786  12047
+00635 DN_2017       115904     81018     44653      14361   6002  16002
+      paso_2017     104524     69141     35985       9736   7455  15965
+      DN_2015       102642     72145     39909       9052  12293  10891
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+la plata
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0497A                      3870    7950  12350       500
+0508C                      5550    8860  14310      7600
+0508B                      6310    8980  13240      6200
+0497C                      5790    9460  14400     10300
+00508                      6120    9590  14350      9500
+00509                      5790    9640  14590      6900
+0496B                      6310    9780  15330     10400
+0496A                      6540    9790  14390     11300
+0508D                      5370    9950  14550     10400
+0505B                      6940   10000  15540      3800
+0503A                      6170   10040  15290      9500
+0497E                      6260   10080  15830     11800
+0508E                      6700   10150  16450      8000
+0497F                      6590   10260  14730      3000
+00493                      3430   10280  11140       100
+0509A                      6210   10400  15410      9100
+0508A                      5840   10690  16710     13000
+0496D                      6350   10810  16730     17200
+0496C                      6580   10860  16500     12600
+0505A                      6760   10980  17740      9200
+00503                      8090   11030  15100      4900
+0497B                      6550   11090  16860      7700
+0497D                      6650   11130  17290      9800
+00498                      8160   11740  16700      1000
+00505                      7040   12150  18960     16500
+00471                      6660   12520  19100      1900
+00497                      7210   12590  18360     15100
+00461                     10570   12650  23240      1600
+00502                      6960   12670  19300     44600
+00496                      7460   12720  18860     29300
+00462                      8390   12980  21320      1800
+00501                      7220   13000  19930     49300
+0504A                      7000   13010  22010     27100
+00504                      7570   13390  23240     33100
+00488                      7640   13450  21550      3300
+00460                      9160   13700  27280      1900
+00520                      8050   13820  20660     14300
+00516                      7220   13910  26840      2900
+00467                      5830   14030  19670      2100
+00477                      8190   14200  20940      7600
+00482                      7860   14330  21800      2900
+00495                      8240   14350  21930     28300
+00469                      6840   14360  22970      2200
+00475                      8540   14680  24420     16900
+00521                      7770   14920  21610      3900
+00472                      7610   15360  22320      1400
+00483                      9730   15390  23180      2800
+00484                      8920   15410  28360      3500
+00464                      8590   15430  24680      2200
+00519                      8720   15550  24200      6500
+00466                      8940   15620  27010      3100
+00476                      9220   15650  24900      3000
+00474                      7670   15980  25830      5100
+00481                      8070   16020  24870      3200
+00473                      9320   16070  25840      4400
+00487                      8010   16100  24380      2400
+00518                      9630   16320  24570      4200
+00463                      7880   16400  27400      1000
+00465                      8250   16460  28340      1900
+00486                      8940   16560  23800      2800
+00485                      9310   16610  27620      2500
+00517                     11490   17580  26430      3700
+00468                      6160   18520  21660      3300
+00480                      9130   18550  29910      2900
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_16.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00475 DN_2017        16881     12788       7518      2653    878   1739
+      paso_2017      16878     12091       6493      2237   1296   2065
+      DN_2015        16820     13263       6339      2617   1381   2926
+0496D DN_2017        17224     12674       5347      3934   1195   2198
+      paso_2017      14858     10039       3647      3006   1424   1962
+      DN_2015        14359     11957       3709      3735   2316   2197
+0504A DN_2017        27109     20925      10979      4803   1418   3725
+      paso_2017      25715     18027       8934      3974   1854   3265
+      DN_2015        25218     20364       8750      4774   2326   4514
+00495 DN_2017        28320     21526      11804      4532   1685   3505
+      paso_2017      26194     19205       9277      3730   2156   4042
+      DN_2015        26613     20193       8842      4092   2553   4706
+00496 DN_2017        29338     20823      10974      6326   2147   1376
+      paso_2017      28988     21442       8645      5339   3009   4449
+      DN_2015        28462     23116       8779      6122   4383   3832
+00504 DN_2017        33056     26692      13317      6961   2008   4406
+      paso_2017      31312     24156      10510      5851   2653   5142
+      DN_2015        30436     24457      10233      6961   3150   4113
+00502 DN_2017        44650     33840      16154      9496   2870   5320
+      paso_2017      43023     31350      13417      8362   3998   5573
+      DN_2015        41883     33139      12702      9490   5297   5650
+00501 DN_2017        49275     36919      19215      8354   3236   6114
+      paso_2017      47875     34114      15703      6990   4203   7218
+      DN_2015        48558     37401      15708      8565   5513   7615
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+general pueyrredon
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00370                      6380   10130  15980     58200
+00368                      6170   10140  14930     21700
+00369                      6760   10730  17210      6200
+00365                      6790   11610  17490    119500
+00364                      7290   12390  18180    135500
+0366A                      8790   13860  19780     60900
+00367                      8830   14510  21720     72500
+00366                      9680   15440  24550     88500
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_26.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00368 DN_2017        21689     14463       5254      5822   1266   2121
+      paso_2017      21345     11268       3857      4507   1666   1238
+      DN_2015        18111     12415       3429      5433   1967   1586
+00370 DN_2017        58193     37265      12635     15179   3729   5722
+      paso_2017      55388     30256       8844     10974   4140   6298
+      DN_2015        51014     35164       8760     14577   5764   6063
+0366A DN_2017        60908     44456      23451     10346   4248   6411
+      paso_2017      58811     39152      19349      8756   5425   5622
+      DN_2015        63487     43200      18851     11323   7485   5541
+00367 DN_2017        72537     52505      31336     10233   4469   6467
+      paso_2017      66940     45740      25066      8199   5454   7021
+      DN_2015        69182     51899      25854     11323   7523   7199
+00366 DN_2017        88460     61737      41105     10420   4466   5746
+      paso_2017      87768     58251      35350      9000   5901   8000
+      DN_2015        85036     60582      34103     11603   7634   7242
+00365 DN_2017       119503     85772      36660     27866   9344  11902
+      paso_2017     118106     80400      28953     22849  11245  17353
+      DN_2015       116626     85912      27464     29359  15730  13359
+00364 DN_2017       135506     97139      42261     29383  10738  14757
+      paso_2017     130613     88235      33111     23611  12547  18966
+      DN_2015       131245     96119      31925     30847  17840  15507
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+lomas de zamora
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00583                      6160    9240  13420    206800
+0590A                      6620   10290  14980     44600
+00587                      6890   10850  15960     94700
+00593                      6870   11420  16390     23600
+0593A                      7340   11720  17460     11500
+00589                      7480   11870  17530     20900
+00590                      8290   13000  19070     37800
+00592                      8050   13570  18890      7300
+00591                      8210   13630  20840     15700
+00588                      8420   13750  20600     11700
+00586                      8570   14030  20810     17100
+00584                      8640   14150  20430     20400
+00585                      8780   14320  20960     10800
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_36.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  FPV / UC  CAMBIEMOS  Massa  Resto
+00584 DN_2017        20415     15714      3671       8684   1360   1999
+      paso_2017      20065     15128      3300       7369   1921   2538
+      DN_2015        36501     22130      3683       7181   2288   8978
+00589 DN_2017        20890     16430      5272       6847   1671   2640
+      paso_2017      19838     14396      4381       5362   2280   2373
+      DN_2015        20253     16063      5299       5642   3299   1823
+00593 DN_2017        23563     17337      6509       6724   1930   2174
+      paso_2017      23213     16396      5657       5308   2698   2733
+      DN_2015        23088     17612      6297       4969   3857   2489
+00586 DN_2017        17078     13226      2854       7121   1215   2036
+      paso_2017      16726     12425      2594       6172   1528   2131
+      DN_2015        28746     16501      2824       5793   1839   6045
+00590 DN_2017        37796     28580      7913      14159   2908   3600
+      paso_2017      35942     27274      7097      12177   3968   4032
+      DN_2015        34947     29028      7547      11458   4932   5091
+0590A DN_2017        44633     34569     15371      10920   3511   4767
+      paso_2017      43583     32447     13396       8566   4885   5600
+      DN_2015        46589     34543     14752       8161   6942   4688
+00587 DN_2017        94739     71073     29402      24905   6467  10299
+      paso_2017      93332     65388     25354      19218   9061  11755
+      DN_2015        84770     66756     28155      18815  11626   8160
+00583 DN_2017       206753    146146     79523      30975  11433  24215
+      paso_2017     168438    113817     60120      20376  13950  19371
+      DN_2015       169408    128955     75191      20154  22142  11468
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+quilmes
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0783A                      5840    9020  13430     13800
+0788C                      5800    9090  13520     32000
+00788                      6030    9150  13360     33200
+0788A                      6030    9900  14530     53500
+0788B                      6580   10060  14810     28800
+0791A                      5680   10120  15760     28800
+00786                      6630   10520  16040     21400
+0786A                      6510   10740  16150     15400
+0791B                      6470   10990  16510     31300
+0785B                      6870   11010  16060     44700
+0785A                      7440   12150  17960     21400
+00791                      7860   13100  18260     20400
+00784                      8120   13400  19260     24400
+00787                      7950   13690  19870     14800
+00785                      8310   13930  20190     41000
+0787A                      8990   14530  20730     30000
+00783                      9240   15190  23650     20600
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_46.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+0791A DN_2017        28782     20931       6926      9331   2231   2443
+      paso_2017      28428     19419       5255      8072   3056   3036
+      DN_2015        23318     18512       4869      7854   3833   1956
+0788B DN_2017        28806     22081       7027      9866   2054   3134
+      paso_2017      28103     19631       5166      8211   2800   3454
+      DN_2015        24998     19057       5124      8722   4088   1123
+0787A DN_2017        30053     21214      11139      4871   1702   3502
+      paso_2017      29254     19524       9609      4198   2416   3301
+      DN_2015        34191     22024      10033      4841   3030   4120
+00788 DN_2017        33191     24429       5726     14103   1969   2631
+      paso_2017      30288     21412       3790     11448   2706   3468
+      DN_2015        30081     23902       4212     13115   4377   2198
+0791B DN_2017        31323     22222       8592      8148   2011   3471
+      paso_2017      30273     19796       6562      6704   2790   3740
+      DN_2015        26390     21094       6690      7641   4343   2420
+0788C DN_2017        32041     23418       5187     14483   1953   1795
+      paso_2017      30290     22465       3294     11977   2462   4732
+      DN_2015        27434     23119       3417     12859   3844   2999
+0785B DN_2017        44674     33395      14129     12477   3151   3638
+      paso_2017      44124     31048      11135     10922   4417   4574
+      DN_2015        40557     32034      10726     11371   6310   3627
+00785 DN_2017        40952     30773      15833      7815   2687   4438
+      paso_2017      40951     27419      13342      6829   3830   3418
+      DN_2015        46530     30309      13363      7408   5059   4479
+0788A DN_2017        53484     39751      11443     20067   3402   4839
+      paso_2017      51379     36674       8136     16499   4731   7308
+      DN_2015        48527     37599       7754     17200   6923   5722
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+almirante brown
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0018A                      6080    9340  13740     52000
+0021A                      6030    9390  13500     13200
+0020A                      6410    9720  14540     26500
+0022A                      6540   10390  15230     53000
+00021                      6380   10490  15810     54800
+00022                      6130   10540  15680     40800
+00019                      6940   10990  16110     96600
+0022B                      7450   11090  15520     15600
+00018                      7190   11610  17140     31300
+00020                      7280   12010  17770     33800
+00017                      8690   14720  23530     25300
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_56.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  FPV / UC  CAMBIEMOS  Massa  Resto
+00018 DN_2017        31342     24672      9289       9203   2500   3680
+      paso_2017      30637     23098      8137       7443   3333   4185
+      DN_2015        29026     22508      7946       7098   4250   3214
+00020 DN_2017        33819     26356      8865      10357   2738   4396
+      paso_2017      33466     24512      7727       8245   3697   4843
+      DN_2015        35298     27388      9202       8824   5354   4008
+00022 DN_2017        40771     27904     11799       8197   3035   4873
+      paso_2017      37495     24535      9710       5669   3925   5231
+      DN_2015        34930     26288     10290       6172   5439   4387
+0018A DN_2017        52010     41241     22215       9918   3982   5126
+      paso_2017      50607     38433     19164       7189   5696   6384
+      DN_2015        48810     36873     20050       7025   7830   1968
+0022A DN_2017        53036     39953     18066      12018   4030   5839
+      paso_2017      49344     34032     14536       8087   5432   5977
+      DN_2015        52690     40083     16958       9301   8649   5175
+00021 DN_2017        54779     44235     18628      13748   5003   6856
+      paso_2017      54779     42884     16636      11021   6874   8353
+      DN_2015        53069     42373     16267       9998   8862   7246
+00019 DN_2017        96646     70248     30495      21358   7201  11194
+      paso_2017      93277     62566     26087      15768   9880  10831
+      DN_2015        84327     62828     26412      15423  13075   7918
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+merlo
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0655A                      5940    9120  12970     54400
+00654                      5860    9280  12860     31900
+0652A                      6060    9700  14400    139000
+00653                      6440    9920  14400     68000
+00652                      7090   11870  17390     67700
+00655                      7550   12330  18310     53200
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_66.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  FPV / UC  CAMBIEMOS  Massa  Resto
+00654 DN_2017        31871     23861     12637       5041   2277   3906
+      paso_2017      32224     22703     11762       3711   3169   4061
+      DN_2015        32715     23315     11761       3245   4576   3733
+0655A DN_2017        54370     38739     20953       8754   3916   5116
+      paso_2017      49363     34322     17827       5884   4888   5723
+      DN_2015        46686     36553     18062       5333   7645   5513
+00655 DN_2017        53184     41088     14655      16314   4834   5285
+      paso_2017      51454     39839     13268      12819   6483   7269
+      DN_2015        50764     40523     13611      12098   9028   5786
+00653 DN_2017        68012     51371     26636      11666   5312   7757
+      paso_2017      65572     48173     23537       8296   6853   9487
+      DN_2015        58981     47553     24598       7406  10087   5462
+00652 DN_2017        67675     48175     17013      17641   5471   8050
+      paso_2017      67356     46558     15788      13985   7484   9301
+      DN_2015        60077     44248     14991      12029   9917   7311
+0652A DN_2017       139025    106765     54533      26215  11849  14168
+      paso_2017     133454     97533     47615      18555  15267  16096
+      DN_2015       124717     99983     48031      16500  22831  12621
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+lanus
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00262                      6320    9840  14540     59400
+00273                      6670   10330  15170     57600
+00274                      7140   11290  16260     44100
+00261                      7220   11430  15950     35000
+00263                      8050   11930  17000     23700
+00265                      7620   11980  17040     25700
+00275                      7890   11990  17340     27000
+00272                      7940   12590  18180     19700
+00260                      7600   12950  18690     44100
+00271                      8190   13120  18700     13100
+00264                      8770   13530  18950      7700
+00276                      8410   13560  19150     30300
+00259                      8060   13600  18750      9700
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_76.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00275 DN_2017        27031     21532      10206      6645   2348   2333
+      paso_2017      26330     20007       8471      5702   2954   2880
+      DN_2015        26218     21389       8529      6101   4091   2668
+00276 DN_2017        30281     23946      12992      6252   2361   2341
+      paso_2017      29929     23115      10902      5360   3238   3615
+      DN_2015        28098     21870      10251      5652   3922   2045
+00261 DN_2017        34991     25958      10416      9731   2849   2962
+      paso_2017      34991     24406       8610      8494   3887   3415
+      DN_2015        30513     23785       7579      8416   5574   2216
+00260 DN_2017        44068     27595      12578      7773   2925   4319
+      paso_2017      44577     26364      10546      6740   3825   5253
+      DN_2015        42941     26534       9970      7227   5177   4160
+00274 DN_2017        44060     34759      14286     12844   3710   3919
+      paso_2017      43005     32392      11648     11050   4874   4820
+      DN_2015        43319     33887      11686     12447   7136   2618
+00273 DN_2017        57619     44636      14672     20363   4033   5568
+      paso_2017      56218     42129      11887     17119   5453   7670
+      DN_2015        52527     39996      11155     17793   7622   3426
+00262 DN_2017        59378     46034      13125     23006   4204   5699
+      paso_2017      57621     41502       9779     18597   5431   7695
+      DN_2015        58350     42709       9467     21182   9035   3025
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+moreno
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0663B                      5940    9150  13410     53600
+0663D                      5990    9260  13470     32400
+0663C                      5960    9360  13440     84000
+0664A                      6150    9670  14720     28100
+0664B                      6250    9960  14550     28300
+0663A                      6600   10620  16040     50800
+00664                      6890   10950  17580     24100
+00663                      7340   12520  18510     49800
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_86.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  FPV / UC  CAMBIEMOS  Massa  Resto
+00664 DN_2017        24111     18327      6859       6304   2064   3100
+      paso_2017      23761     16710      6067       4871   2571   3201
+      DN_2015        20376     15303      5949       4279   3452   1623
+0664A DN_2017        28094     21643      9483       6230   2511   3419
+      paso_2017      27390     19979      8149       4465   3194   4171
+      DN_2015        24127     19451      8178       3622   4600   3051
+0664B DN_2017        28288     22625     10222       5668   2780   3955
+      paso_2017      19883     14745      6220       2782   2340   3403
+      DN_2015        24783     19844      9041       3510   4936   2357
+0663D DN_2017        32429     22143     12047       4339   2395   3362
+      paso_2017      31377     21862     10072       2825   2909   6056
+      DN_2015        28828     21624     11854       2536   4491   2743
+00663 DN_2017        49777     33408      9749      13867   3707   6085
+      paso_2017      50499     32546      9202      11347   4965   7032
+      DN_2015        46390     32935      9396       9518   7876   6145
+0663A DN_2017        50816     39656     14775      13664   4535   6682
+      paso_2017      50140     36437     13104      10465   5769   7099
+      DN_2015        47328     37551     13678       9387   8875   5611
+0663B DN_2017        53572     42568     19943      11214   5134   6277
+      paso_2017      51848     37386     16977       7865   6302   6242
+      DN_2015        50823     41480     18749       7000   9588   6143
+0663C DN_2017        83961     63884     30870      15742   7521   9751
+      paso_2017      79422     55070     25046      10331   9072  10621
+      DN_2015        76022     59357     28845       8561  14067   7884
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+general san martin
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00388                      6930   10480  15340     69700
+0377A                      7100   11130  16250     60000
+00381                      7090   11150  16160     46800
+00384                      7660   12140  17200     17700
+00378                      7270   12340  18070     33300
+00377                      7740   13060  19310     36000
+00383                      8590   13520  20020      8900
+00380                      8680   13600  18620     16400
+00379                      8270   13710  18520     22100
+00376                      8690   13850  19790     32700
+00382                      9220   14170  19430      6400
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_96.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00379 DN_2017        22140     17544       7733      5216   2021   2574
+      paso_2017      20751     15606       5908      4270   2589   2839
+      DN_2015        21070     16729       5810      4981   3792   2146
+00378 DN_2017        33333     23001       9073      7353   2393   4182
+      paso_2017      31592     20464       7006      5849   3153   4456
+      DN_2015        32875     23824       7289      7292   4867   4376
+00376 DN_2017        32672     20727      10031      4732   2301   3663
+      paso_2017      32334     19474       8072      4218   3098   4086
+      DN_2015        33459     20864       7842      4699   4319   4004
+00377 DN_2017        35973     26406      13161      7639   3401   2205
+      paso_2017      35643     26565      10833      6738   4626   4368
+      DN_2015        35317     27582      10554      7449   5932   3647
+00381 DN_2017        46762     35219      12978     13164   3964   5113
+      paso_2017      45376     33119      10193     10881   5399   6646
+      DN_2015        41988     34085       9816     11717   6771   5781
+0377A DN_2017        59951     41361      14635     15625   4709   6392
+      paso_2017      58934     38868      11282     12414   6787   8385
+      DN_2015        58675     42026      11718     15239   9057   6012
+00388 DN_2017        69702     53893      17714     22077   6394   7708
+      paso_2017      65176     47041      12693     17760   8498   8090
+      DN_2015        61095     48852      12189     18994  11559   6110
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+florencio varela
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0302B                      5270    8660  13660     23200
+0302E                      5430    8800  13470     46800
+0302A                      5800    9110  13170     39900
+0302F                      6080    9340  13530      5500
+0303A                      5380    9360  14260      8700
+0303B                      6240    9430  13510     24900
+0302D                      6030    9490  14190     17400
+00303                      6640    9700  13880      4000
+0302C                      6050   10140  14650     31800
+00302                      6190   10430  15590    117500
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_106.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  FPV / UC  CAMBIEMOS  Massa  Resto
+0302D DN_2017        17419     14216      6908       3824   1306   2178
+      paso_2017      16718     13135      6338       2840   1688   2269
+      DN_2015        16418     13365      6062       2293   3103   1907
+0302B DN_2017        23217     17680      8833       4005   1526   3316
+      paso_2017      23216     16139      8432       3202   1904   2601
+      DN_2015        20151     14735      8216       2512   3133    874
+0303B DN_2017        24872     18480      9235       4706   1831   2708
+      paso_2017      22069     15716      7614       3166   2044   2892
+      DN_2015        22655     17969      8203       2632   3900   3234
+0302C DN_2017        31754     24885     11621       7531   2280   3453
+      paso_2017      30703     23111     10845       5818   2914   3534
+      DN_2015        28665     24142     10507       4463   5049   4123
+0302A DN_2017        39934     29647     15972       6124   2281   5270
+      paso_2017      34945     25164     13344       3912   2642   5266
+      DN_2015        36618     27165     15297       3555   5312   3001
+0302E DN_2017        46766     34236     16504       8820   3360   5552
+      paso_2017      41809     28818     14046       5886   3937   4949
+      DN_2015        38623     29197     13685       4859   6721   3932
+00302 DN_2017       117519     85593     35716      27853   7384  14640
+      paso_2017     111845     79155     32192      21999   9260  15704
+      DN_2015       105141     77521     32231      18141  16196  10953
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+tigre
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0535A                      6480   10440  15440     55900
+00536                      6580   10530  16270     38600
+00535                      6730   10780  16730     44300
+00530                      6850   10950  16610     66500
+00534                      6900   11260  17840     34500
+0534A                      7280   11580  17090     58000
+0536A                      8000   12180  19520      4500
+00533                      7310   12760  18140      5400
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_116.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  Massa  FPV / UC  Resto
+00533 DN_2017         5375      3811       1182    643      1244    742
+      paso_2017       5374      3734        943    787      1139    865
+      DN_2015         4693      3301        803    764      1160    574
+00534 DN_2017        34480     25231      10660   4325      5701   4545
+      paso_2017      35180     24282       9448   5309      5277   4248
+      DN_2015        26319     22157       7873   6610      5037   2637
+00536 DN_2017        38631     30266       8711   7104      9372   5079
+      paso_2017      37194     28089       6439   8171      7774   5705
+      DN_2015        35584     29431       5972   9410      8709   5340
+00535 DN_2017        44297     35763      13694   7309      9917   4843
+      paso_2017      42545     33028      10509   8481      8559   5479
+      DN_2015        42424     35786       9468  11510      9304   5504
+0535A DN_2017        55862     44623      12555  11254     14638   6176
+      paso_2017      55861     43661       9556  13714     12639   7752
+      DN_2015        52781     44767       7987  16831     12934   7015
+0534A DN_2017        57983     44961      15436  10499     12203   6823
+      paso_2017      59318     43686      13029  13133     11098   6426
+      DN_2015        60441     47516      10329  17339     10902   8946
+00530 DN_2017        66492     50426      18967  11503     12303   7653
+      paso_2017      65441     47821      15041  13839     10937   8004
+      DN_2015        63133     50089      12371  18066     11802   7850
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+avellaneda
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00026                      5250    8760  12590      5200
+00027                      6490   10520  16010     23800
+00025                      6210   10860  17100     11300
+00039                      7090   11160  16480     55800
+00032                      6730   11270  16390      4200
+00038                      7400   11800  17230     37900
+00031                      7190   11870  16660      2500
+00037                      7450   12240  17700     21400
+00034                      8030   12400  17820     22200
+00040                      7670   12620  18040     70600
+00024                      7490   12840  18160     10400
+00030                      8610   13240  18450      6100
+00033                      8850   13480  18690     11900
+00023                      8580   14220  19720     17000
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_126.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  FPV / UC  CAMBIEMOS  Massa  Resto
+00023 DN_2017        16981     11587      3404       5475    870   1838
+      paso_2017      16987     11052      3085       4408   1247   2312
+      DN_2015        16251     11141      2956       4472   1488   2225
+00037 DN_2017        21380     16521      6037       6492   1587   2405
+      paso_2017      19933     14556      5245       5008   2149   2154
+      DN_2015        21659     15695      5299       5047   2906   2443
+00034 DN_2017        22180     16665      6311       6723   1677   1954
+      paso_2017      21836     15881      5700       5521   2435   2225
+      DN_2015        21535     16450      5678       5236   3311   2225
+00027 DN_2017        23759     17091      8926       4198   1554   2413
+      paso_2017      23770     15967      8055       3329   2111   2472
+      DN_2015        22622     16006      7756       3329   2868   2053
+00038 DN_2017        37898     29617     11027      11901   2713   3976
+      paso_2017      38254     28467     10226       9920   3959   4362
+      DN_2015        35989     28414     10217       9696   5060   3441
+00039 DN_2017        55825     42718     19754      13756   3718   5490
+      paso_2017      54798     39914     17582      10817   5375   6140
+      DN_2015        52805     40900     17870      10605   7100   5325
+00040 DN_2017        70575     53401     19010      22551   5297   6543
+      paso_2017      70598     52041     16830      18693   7915   8603
+      DN_2015        68924     53204     17554      18665   9756   7229
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+tres de febrero
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00392                      6420   10350  15370     10100
+00394                      7170   11680  16920     51900
+00395                      7700   12160  17580     49500
+00393                      7530   12770  18190     57600
+00391                      8010   13270  18680     82800
+00389                      9420   14310  20160     14100
+00390                      8460   14480  19530     17500
+0394A                      9390   15470  23010     14600
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_136.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00389 DN_2017        14068     10682       5255      2760   1023   1644
+      paso_2017      11972      8833       3876      2063   1180   1714
+      DN_2015        13554     10204       4252      2629   1892   1431
+0394A DN_2017        14602     11235       7041      2086    851   1257
+      paso_2017      14255     10401       6068      1850   1170   1313
+      DN_2015        14801     11591       6347      2129   1473   1642
+00390 DN_2017        17455     14107       7183      3621   1514   1789
+      paso_2017      16758     12979       5871      3034   2071   2003
+      DN_2015        16494     13586       5740      3493   2627   1726
+00395 DN_2017        49502     35355      15196     11294   3847   5018
+      paso_2017      46712     31545      11433      9373   5284   5455
+      DN_2015        45479     34090      11488     11046   7811   3745
+00393 DN_2017        57622     39262      15153     14061   4216   5832
+      paso_2017      54683     36045      11931     12054   5560   6500
+      DN_2015        50085     38463      11866     13894   8615   4088
+00394 DN_2017        51938     42058      16552     15313   4416   5777
+      paso_2017      50200     38974      12445     13106   6386   7037
+      DN_2015        52191     40954      11958     15203   9364   4429
+00391 DN_2017        82800     61354      28111     17845   7051   8347
+      paso_2017      82025     60295      23320     15599   9418  11958
+      DN_2015        87484     63399      22646     17735  13559   9459
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+san isidro
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00893                      6950   12490  19680     39400
+00892                      7650   12570  18940     70100
+0892A                      7750   13220  19000     34700
+00889                      7890   13520  20920     26000
+00891                      9010   14720  22720     53000
+00888                      8760   14810  23840     17700
+00887                      9040   15210  24590     16800
+00890                     10500   16390  25390      3000
+00894                      9410   16820  31370      5900
+00895                     10450   18450  35380     19000
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_146.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00888 DN_2017        17681     14217       9753      1982    974   1508
+      paso_2017      17337     13325       8637      1758   1339   1591
+      DN_2015        17396     13622       8275      1908   1702   1737
+00895 DN_2017        19040     14581      11896      1000    575   1110
+      paso_2017      19047     14043      10938       886    864   1355
+      DN_2015        19044     14799      11153      1015    917   1714
+00889 DN_2017        26021     20201      11545      4506   2005   2145
+      paso_2017      26028     19145      10123      3973   2750   2299
+      DN_2015        28634     21238       9707      4438   3793   3300
+0892A DN_2017        34715     28056      15077      6446   3018   3515
+      paso_2017      34380     26543      12899      5617   4280   3747
+      DN_2015        32658     27103      11627      5881   5452   4143
+00893 DN_2017        39408     29264      16718      6281   2382   3883
+      paso_2017      39423     27125      14095      5567   3203   4260
+      DN_2015        37793     28972      14457      6124   4313   4078
+00891 DN_2017        52951     40454      26273      5476   3117   5588
+      paso_2017      52196     38243      23355      4806   4281   5801
+      DN_2015        52831     40399      23272      5631   5199   6297
+00892 DN_2017        70061     52008      24161     14982   5211   7654
+      paso_2017      68684     47275      20375     12830   7193   6877
+      DN_2015        67650     52210      20058     13769   9673   8710
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+moron
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00671                      7640   12130  17300     47000
+00673                      7840   12230  17720     43600
+00665                      7600   12290  17570    104900
+00672                      8690   14210  21350     34800
+00669                      8850   14570  20760     37300
+00670                      9480   15160  21830     12000
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_156.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00670 DN_2017        12011      9771       5613      2099    834   1225
+      paso_2017      12018      9550       4939      1895   1189   1527
+      DN_2015        12609     10113       4758      2079   1499   1777
+00672 DN_2017        34767     28130      15254      6908   2812   3156
+      paso_2017      34065     27077      13025      6166   3861   4025
+      DN_2015        34083     27570      12520      6775   4202   4073
+00669 DN_2017        37313     29226      15943      6558   2579   4146
+      paso_2017      35222     26532      13157      5764   3298   4313
+      DN_2015        36278     28861      13204      6503   4369   4785
+00673 DN_2017        43604     33081      13309     11227   3387   5158
+      paso_2017      42552     31156      11017      9846   4541   5752
+      DN_2015        41211     30332       9987     10730   5901   3714
+00671 DN_2017        46952     34875      16537     10413   3706   4219
+      paso_2017      47320     33830      14244      9566   5220   4800
+      DN_2015        46975     36186      13268     10434   7210   5274
+00665 DN_2017       104918     79238      32114     27820   8676  10628
+      paso_2017     102118     74076      25336     24213  11683  12844
+      DN_2015       101912     79629      24258     26227  16472  12672
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+malvinas argentinas
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0399C                      6070    8950  14100      1700
+0399G                      5830    9080  13350     20400
+00399                      6660   10090  14610     71000
+0399A                      6600   10450  15260     36000
+0399B                      6730   10640  16280     29100
+0399E                      7160   10920  15830     20400
+0399D                      7260   11300  16530     30000
+0399F                      7450   11610  16930     53800
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_166.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  FPV / UC  CAMBIEMOS  Massa  Resto
+0399G DN_2017        20454     16609      9388       3538   1748   1935
+      paso_2017      18003     13122      7195       2298   2137   1492
+      DN_2015        18297     14572      7476       1705   4148   1243
+0399E DN_2017        20442     15948      6905       4971   2191   1881
+      paso_2017      19047     14782      5680       3695   2607   2800
+      DN_2015        20358     16200      6046       2754   5091   2309
+0399B DN_2017        29079     22584      9532       6873   2629   3550
+      paso_2017      28737     21016      7978       5424   3447   4167
+      DN_2015        26141     20915      7748       4254   5603   3310
+0399D DN_2017        30042     23854      9885       7786   2803   3380
+      paso_2017      29000     21498      8592       6338   3549   3019
+      DN_2015        26557     22138      8036       4107   7046   2949
+0399A DN_2017        35958     29068     13498       7980   3186   4404
+      paso_2017      27886     21173      8929       5150   3354   3740
+      DN_2015        32605     27560     10747       3930   8398   4485
+0399F DN_2017        53827     43577     15817      17031   4825   5904
+      paso_2017      51382     39645     13373      13848   6314   6110
+      DN_2015        51537     43537     13676       9386  14445   6030
+00399 DN_2017        71034     56275     26540      14044   6160   9531
+      paso_2017      66495     48323     21748      10587   7846   8142
+      DN_2015        66693     54202     23189       7124  15461   8428
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+berazategui
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0789D                      5850   10140  15430     17900
+0792D                      5720   10180  16100     14700
+0790A                      5950   10310  15500      9500
+0792B                      6250   10420  15610      8900
+0792C                      6570   10420  15490     14600
+0792A                      6900   10550  15770     14800
+0789A                      6030   10730  16360     29300
+00792                      6450   10770  16700     22600
+00789                      6600   11190  16370     45900
+00790                      6730   11910  18130     20500
+0789E                      6660   11920  17320     15400
+0789B                      6940   11970  17490     15600
+0789C                      7520   12740  18700     18200
+0789F                      8020   12960  18470     12600
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_176.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  FPV / UC  CAMBIEMOS  Massa  Resto
+0789E DN_2017        15386     11570      4655       4704   1410    801
+      paso_2017      15735     12428      4447       3721   1933   2327
+      DN_2015        14879     11426      4379       3316   2821    910
+0789B DN_2017        15616     12471      5065       4406   1424   1576
+      paso_2017      14916     10926      4508       3204   1903   1311
+      DN_2015        27663     22923      8503       6379   4852   3189
+0789C DN_2017        18246     14611      4865       6502   1450   1794
+      paso_2017      17895     13865      4185       5230   1966   2484
+      DN_2015        16567     13071      4354       4711   2563   1443
+0789D DN_2017        17882     14145      7107       3714   1454   1870
+      paso_2017      16832     13318      6126       2636   1867   2689
+      DN_2015        14025     11657      5147       2134   2227   2149
+00790 DN_2017        20533     15996      6036       6306   1666   1988
+      paso_2017      19831     15045      5139       4938   2275   2693
+      DN_2015        17905     14138      5085       4703   2875   1475
+00792 DN_2017        22555     16998      7024       5894   1637   2443
+      paso_2017      22203     16082      6532       4624   2346   2580
+      DN_2015        22552     17061      7005       4551   3370   2135
+0789A DN_2017        29281     22681     10767       6984   2770   2160
+      paso_2017      26828     21040      9324       4977   3532   3207
+      DN_2015        28937     22757     10401       4869   5278   2209
+00789 DN_2017        45874     30335     13772       8670   3138   4755
+      paso_2017      37967     24139     10486       5377   3596   4680
+      DN_2015        44064     30325     12924       6112   5811   5478
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+bahia blanca
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00090                      2330    2710  12850         0
+00091                      5950    9620  13910     11000
+00088                      6350   10750  15600      5800
+00093                      6550   10810  16810      4400
+00092                      6490   10990  16670      9800
+00074                      5750   11180  17120     19900
+00080                      6890   11190  15760      2200
+00087                      6690   11230  17090     16900
+00076                      6290   11390  17300     36800
+00077                      6440   11390  17940      3800
+00075                      5900   11430  18220      8700
+00079                      7330   11760  17620      5700
+00086                      6610   12500  18230     23500
+00073                      7120   12510  19110     29600
+00085                      7250   13110  19720     26500
+00078                      7600   13490  20290      5000
+00089                      7600   14080  22700      8500
+00084                      8710   14320  20840     11200
+00072                      8250   14460  19920     10600
+00083                      8770   15170  24330     12200
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_186.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00083 DN_2017        12199      9364       6284      1239    570   1271
+      paso_2017      12199      9099       5614      1159    804   1522
+      DN_2015        12368      9602       5284      1418    964   1936
+00087 DN_2017        16923     13071       5565      3252   1274   2980
+      paso_2017      15871     11849       4257      2872   1511   3209
+      DN_2015        16992     13280       4235      3569   2492   2984
+00072 DN_2017        10646      8055       4936      1250    608   1261
+      paso_2017      10296      7098       3959      1118    770   1251
+      DN_2015        17809      9250       4033      1413   1014   2790
+00074 DN_2017        19901     15067       7435      3345   1520   2767
+      paso_2017      19198     14575       6072      3095   1910   3498
+      DN_2015        18883     15096       5659      3478   2798   3161
+00086 DN_2017        23463     18314       9971      3436   1617   3290
+      paso_2017      22763     17522       8303      3136   2178   3905
+      DN_2015        20122     15662       6835      3290   2508   3029
+00073 DN_2017        29580     17484       8892      3095   1320   4177
+      paso_2017      27619     15104       7302      2863   1633   3306
+      DN_2015        21391     16576       7572      3396   2246   3362
+00085 DN_2017        26457     20660      11817      3674   1605   3564
+      paso_2017      26453     20418      10111      3402   2205   4700
+      DN_2015        24575     19303       9031      3856   2566   3850
+00076 DN_2017        36828     28346      13287      6679   2807   5573
+      paso_2017      36827     26937      10873      6428   3668   5968
+      DN_2015        33959     27165       9601      6682   4850   6032
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+vicente lopez
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00999                      8660   13340  19470     36800
+01000                      8790   13850  19810     49800
+01001                      8570   14190  20580     44600
+00996                      9290   15110  23560     25800
+00998                      9410   15280  22940     16900
+00993                      9730   15400  24550     26700
+00995                      9680   15780  25260     21500
+00997                      9870   16140  26430     10900
+00994                     11310   18560  31690     12700
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_196.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00998 DN_2017        16937     13489       7713      2711   1110   1955
+      paso_2017      16945     12861       6732      2409   1451   2269
+      DN_2015        16543     13342       6405      2556   1820   2561
+00995 DN_2017        21488     14077       8560      2104    951   2462
+      paso_2017      20388     12782       7780      1823   1220   1959
+      DN_2015        21113     14357       7346      2168   1543   3300
+00996 DN_2017        25852     20323      13056      3253   1766   2248
+      paso_2017      25863     20155      11535      2940   2336   3344
+      DN_2015        25217     20252      10998      3279   2686   3289
+00993 DN_2017        26666     20763      14545      2699   1366   2153
+      paso_2017      26320     19724      13082      2418   1813   2411
+      DN_2015        26346     20589      12422      2586   2204   3377
+00999 DN_2017        36781     28321      13387      7559   2903   4472
+      paso_2017      35388     25902      10585      6518   3836   4963
+      DN_2015        36192     28182      10692      7544   5394   4552
+01001 DN_2017        44557     34456      21503      5921   2631   4401
+      paso_2017      43422     32240      18797      5318   3594   4531
+      DN_2015        43023     33972      18471      5841   4509   5151
+01000 DN_2017        49753     35472      18552      7623   3785   5512
+      paso_2017      47310     33745      15119      6613   4827   7186
+      DN_2015        49925     36291      15159      7459   6656   7017
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+pilar
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00770                      6240    9950  14760     46400
+00768                      6660   10480  15790     77400
+00772                      6650   10480  16170     28000
+00771                      6610   10560  16080     69500
+0770A                      7220   11430  20030     10800
+00769                      7020   11520  18540      9000
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_206.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00769 DN_2017         8973      7130       3511      2057    648    914
+      paso_2017       8622      6297       2657      1781    833   1026
+      DN_2015         7339      6195       2641      1750    954    850
+0770A DN_2017        10815      8216       4565      2375    660    616
+      paso_2017      10815      7916       3853      2246    885    932
+      DN_2015         9208      7698       3635      2105    937   1021
+00772 DN_2017        28024     22193       9745      7407   2250   2791
+      paso_2017      26621     20147       7133      7169   2990   2855
+      DN_2015        24412     20238       7491      7225   3358   2164
+00770 DN_2017        46368     33584      10413     13071   3387   6713
+      paso_2017      45580     30773       8103     12427   4127   6116
+      DN_2015        43968     32501       8008     13014   5021   6458
+00771 DN_2017        69503     53603      22005     19683   5564   6351
+      paso_2017      65995     48099      16020     17467   7186   7426
+      DN_2015        63418     52957      17540     18936   9002   7479
+00768 DN_2017        77402     57569      24321     17791   5424  10033
+      paso_2017      71091     49122      16864     15263   6647  10348
+      DN_2015        68165     55119      19646     17439   8756   9278
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+san miguel
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00402                      6250    9800  14830     25600
+0397B                      6380    9820  14290     35000
+0397C                      6400   10170  14960     32400
+00400                      6470   10760  16590     25100
+0397A                      7000   11120  16030     22100
+00401                      6080   12750  17830      6700
+00397                      8150   12940  18690     54500
+0401A                      8730   14170  21800     33800
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_216.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+0397A DN_2017        22141     17660       6782      6892   1719   2267
+      paso_2017      21108     16824       5303      6096   2074   3351
+      DN_2015        20699     17537       3685      6466   4499   2887
+00402 DN_2017        25636     20555       8081      8075   1580   2819
+      paso_2017      25294     19175       6905      7587   2142   2541
+      DN_2015        23389     19903       5125      7623   3940   3215
+00400 DN_2017        25075     19860      10666      4867   1818   2509
+      paso_2017      24534     19166       9011      4531   2381   3243
+      DN_2015        23735     19512       7329      4737   4508   2938
+0397C DN_2017        32421     25613       8189     11855   2253   3316
+      paso_2017      32432     23705       6611     11280   2942   2872
+      DN_2015        30227     25045       3856     11251   6017   3921
+0397B DN_2017        35048     28583       8110     13752   2413   4308
+      paso_2017      34361     26984       6500     12602   3082   4800
+      DN_2015        31958     26813       3827     12246   6211   4529
+0401A DN_2017        33770     26719      15408      5995   2260   3056
+      paso_2017      33430     25345      13442      5811   2914   3178
+      DN_2015        32726     26520      11056      6063   5463   3938
+00397 DN_2017        54508     39869      19875     10415   3707   5872
+      paso_2017      54531     38974      16972     10036   4886   7080
+      DN_2015        51269     39449      12922     10259   8790   7478
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+esteban echeverria
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0286A                      5840    9170  13220     33800
+0287D                      5790    9310  14100     20800
+00286                      6380    9420  12860      3700
+0288B                      5440    9660  14300     28100
+0287C                      6050    9930  14550     14200
+00287                      6540   10450  15660     22400
+0287A                      6900   10770  15560     16700
+0291A                      6730   10810  15490     20500
+00291                      7390   12060  17990     14900
+0287B                      7210   12650  21970      4700
+00288                      7710   12830  19430     36600
+0288A                      7590   12960  20560     18900
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_226.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  FPV / UC  CAMBIEMOS  Massa  Resto
+0287A DN_2017        16685     12947      5836       4272   1331   1508
+      paso_2017      17164     13731      5460       3412   2037   2822
+      DN_2015        16420     13439      5630       3324   2741   1744
+0288A DN_2017        18908     14053      3606       6763   1302   2382
+      paso_2017      18908     12488      3274       5568   1836   1810
+      DN_2015        16235     13589      3555       5504   2414   2116
+0287D DN_2017        20771     16208      7813       4567   1609   2219
+      paso_2017      20420     15182      6782       3386   2385   2629
+      DN_2015        19700     16503      7148       3456   3023   2876
+0291A DN_2017        20455     15749      6859       5548   1663   1679
+      paso_2017      20803     15974      6190       4458   2454   2872
+      DN_2015        19854     16194      6548       4241   3410   1995
+00287 DN_2017        22438     17305      8556       4961   1852   1936
+      paso_2017      20686     14517      6989       3486   2386   1656
+      DN_2015        20709     16108      7954       3459   3456   1239
+0288B DN_2017        28116     21351      9450       6212   1936   3753
+      paso_2017      27067     19117      7991       4654   2856   3616
+      DN_2015        23195     18776      8105       4462   3755   2454
+0286A DN_2017        33769     23056     11319       5233   1934   4570
+      paso_2017      33768     21024      9968       3760   2820   4476
+      DN_2015        26958     19864      9986       3495   3946   2437
+00288 DN_2017        36571     23899      5767      11240   2127   4765
+      paso_2017      36571     21853      5145       9510   3097   4101
+      DN_2015        41244     26528      5709       9794   3845   7180
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+Resto 6a Seccion
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+                             Ingresos (basado en EPH)                         
+                                                  25% mediana    75% electores
+area_1                                                                        
+daireaux                                         6540   10680  16720     14500
+adolfo gonzales chaves                           6570   10710  16380     10500
+benito juarez                                    6330   10940  16620     16900
+laprida                                          6290   10970  16590      9400
+tres lomas                                       6270   11180  15410      6600
+coronel dorrego                                  6600   11240  17520     13800
+salliquelo                                       6580   11270  17210      7800
+coronel pringles                                 6210   11310  17440     19600
+guamini                                          7010   11510  17450      9800
+puan                                             7200   11560  16620     14400
+adolfo alsina                                    6930   11630  17160     14300
+tornquist                                        7120   11720  17650     12400
+monte hermoso                                    6960   12000  18000      7800
+pellegrini                                       6880   12000  16710      5100
+saavedra                                         7060   12230  17930     18300
+coronel de marina l. rosales                     6520   12500  18730     19900
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_236.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza                                  ELECTORES  VOTANTES  CAMBIEMOS  \
+coronel dorrego              DN_2017        13765     10522       5545   
+                             paso_2017      13765      9960       4657   
+                             DN_2015        13617     10962       4976   
+adolfo alsina                DN_2017        14314     11047       6049   
+                             paso_2017      13985     10253       5164   
+                             DN_2015        13189     10543       4957   
+daireaux                     DN_2017        14471     11809       5854   
+                             paso_2017      14485     11034       4850   
+                             DN_2015        14225     11735       5298   
+puan                         DN_2017        14433     10388       6853   
+                             paso_2017      14433      9669       5569   
+                             DN_2015        14299     11025       6116   
+benito juarez                DN_2017        16929     12973       5698   
+                             paso_2017      16959     11079       4196   
+                             DN_2015        16447     13212       4200   
+saavedra                     DN_2017        18253     13750       7281   
+                             paso_2017      18272     13468       6567   
+                             DN_2015        17678     13754       5215   
+coronel pringles             DN_2017        19583     14948       7748   
+                             paso_2017      20282     14609       6885   
+                             DN_2015        19687     14922       6200   
+coronel de marina l. rosales DN_2017        49880     36541      22644   
+                             paso_2017      48824     33929      17908   
+                             DN_2015        47359     35274      17364   
+
+Fuerza                                  FPV / UC  Massa  Resto  
+coronel dorrego              DN_2017        2565   1114   1298  
+                             paso_2017      2430   1451   1422  
+                             DN_2015        2900    985   2101  
+adolfo alsina                DN_2017        2279   1135   1584  
+                             paso_2017      2111   1208   1770  
+                             DN_2015        2688   1156   1742  
+daireaux                     DN_2017        3697    820   1438  
+                             paso_2017      3216   1278   1690  
+                             DN_2015        4295   1001   1141  
+puan                         DN_2017        1549   1116    870  
+                             paso_2017      1416   1263   1421  
+                             DN_2015        2447   1113   1349  
+benito juarez                DN_2017        4188   1036   2051  
+                             paso_2017      4109   1377   1397  
+                             DN_2015        4755   2059   2198  
+saavedra                     DN_2017        3248   1641   1580  
+                             paso_2017      2973   1852   2076  
+                             DN_2015        4015   1953   2571  
+coronel pringles             DN_2017        3675   1187   2338  
+                             paso_2017      3899   1362   2463  
+                             DN_2015        4230   1706   2786  
+coronel de marina l. rosales DN_2017        5335   4255   4307  
+                             paso_2017      4754   5733   5534  
+                             DN_2015        6592   6433   4885  
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+jose c. paz
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0398A                      6060    9470  13480     75200
+0398B                      6690   10410  15280     60300
+00398                      6720   10530  15750     83800
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_246.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  FPV / UC  CAMBIEMOS  Massa  Resto
+0398B DN_2017        60317     47310     21619      14124   4804   6763
+      paso_2017      57876     42588     17977      10444   6605   7562
+      DN_2015        57620     46674     20396       9549  10165   6564
+0398A DN_2017        75172     58686     32872      12622   5223   7969
+      paso_2017      73084     54558     28441       9085   7135   9897
+      DN_2015        68953     55684     29371       8049  11031   7233
+00398 DN_2017        83817     58784     24657      18518   5834   9775
+      paso_2017      77882     51128     19701      13678   7681  10068
+      DN_2015        77360     56707     22689      12274  12906   8838
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+comuna 13
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00140                      9800   14650  21050      8500
+00135                      9520   15190  23680     11700
+00146                     10660   15300  25350     11700
+00134                      9390   15610  25000      8800
+00137                      9790   15700  23590     14000
+00145                     10300   15960  25210     15300
+00141                      9620   16020  25790     14600
+00138                     10830   16640  26410     29000
+00143                     10790   16930  27250     18300
+00136                      9850   17610  27810     14700
+00144                     11240   18400  33620      8100
+00139                     11550   18780  27220     18400
+00147                     10330   18890  26030     21000
+00142                     11970   21910  39540     24700
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_256.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00136 DN_2017        14660     10685       6351      1932      0   2402
+      paso_2017      14656      7813       6160      1855      0   -202
+      DN_2015        14819     11347       5979      2033   1290   2045
+00145 DN_2017        15332     10487       6263      2332      0   1892
+      paso_2017      15328      7822       5993      2316      0   -487
+      DN_2015        15341     12127       5845      2361   1340   2581
+00143 DN_2017        18334     13212       8859      1742      0   2611
+      paso_2017      18329     11607       8485      1762      0   1360
+      DN_2015        18031     13413       8026      1807   1221   2359
+00139 DN_2017        18413     12812       8887      1800      0   2125
+      paso_2017      18408     10738       8568      1822      0    348
+      DN_2015        18066     14112       8299      1835   1292   2686
+00147 DN_2017        21003     15161       9853      2102      0   3206
+      paso_2017      21002     12008       9552      2044      0    412
+      DN_2015        20916     15453       9408      2193   1507   2345
+00142 DN_2017        24717     16675      13827      1377      0   1471
+      paso_2017      24716     13528      13443      1412      0  -1327
+      DN_2015        24536     18265      13468      1490   1257   2050
+00138 DN_2017        29015     19660      13597      3103      0   2960
+      paso_2017      29015     17102      13142      3056      0    904
+      DN_2015        28674     21581      12720      3199   2248   3414
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+comuna 14
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00156                      9360   14690  25340     10000
+00155                      9720   15300  24180     24100
+00149                      8940   15520  23470     25400
+00152                     11190   16410  30200     20600
+00157                     10120   16430  24820     16400
+00154                      8950   16460  24190     27500
+00153                     11250   17000  27280     24400
+00148                     11240   18020  30770     22700
+00151                     10390   18180  29190     26500
+00150                     13930   22540  46040     13200
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_266.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00152 DN_2017        20593     13384      10185      1770      0   1429
+      paso_2017      20591     11374       9847      1791      0   -264
+      DN_2015        20622     14747       9553      1939   1203   2052
+00148 DN_2017        22716     15340      11454      1947      0   1939
+      paso_2017      22715     14791      11015      1929      0   1847
+      DN_2015        22688     17227      11149      2060   1429   2589
+00155 DN_2017        24132     16094       9359      3731      0   3004
+      paso_2017      24127     13757       9106      3600      0   1051
+      DN_2015        23157     16714       8407      3792   2051   2464
+00153 DN_2017        24364     16748      10443      3007      0   3298
+      paso_2017      24363     14113      10205      2970      0    938
+      DN_2015        24660     18166       9775      3153   1881   3357
+00149 DN_2017        25430     17616      13069      1902      0   2645
+      paso_2017      25778     15163      12707      1910      0    546
+      DN_2015        25305     19557      12729      2192   1585   3051
+00151 DN_2017        26530     17279      13766      1985      0   1528
+      paso_2017      26523     14582      13309      2035      0   -762
+      DN_2015        25776     19203      13043      2253   1420   2487
+00154 DN_2017        27502     16726      10847      3794      0   2085
+      paso_2017      27496     18160      10512      3781      0   3867
+      DN_2015        27228     20475      10091      4002   2084   4298
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+comuna 12
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00132                      8810   14060  21840     20200
+00124                      8660   14440  22030     16200
+00125                      9100   14610  21420     21500
+00126                      8850   14610  21480     17900
+00133                      8870   14810  23000     20600
+00128                      9640   14920  21910     19500
+00129                      9530   15340  24310     25400
+00131                      9590   15370  20900      5700
+00130                     10150   15580  23860     17700
+00127                      9270   15740  22750     24000
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_276.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00130 DN_2017        17682     12833       7103      2676      0   3054
+      paso_2017      17336     11642       6689      2492      0   2461
+      DN_2015        17873     14111       6711      2797   1610   2993
+00126 DN_2017        17939     12526       7000      3088      0   2438
+      paso_2017      17941     10516       6622      2931      0    963
+      DN_2015        17858     14166       6424      3214   2236   2292
+00128 DN_2017        19493     12974       7770      3183      0   2021
+      paso_2017      19144     11410       7069      2936      0   1405
+      DN_2015        19059     15464       6971      3191   2160   3142
+00132 DN_2017        20154     14777       7863      3432      0   3482
+      paso_2017      20157     11086       7500      3350      0    236
+      DN_2015        20485     16415       7331      3644   2299   3141
+00133 DN_2017        20572     15288       8584      3108      0   3596
+      paso_2017      20221     13411       8154      2924      0   2333
+      DN_2015        20349     15485       7716      3189   2133   2447
+00125 DN_2017        21486     14628       8468      3475      0   2685
+      paso_2017      21484     13906       8062      3389      0   2455
+      DN_2015        21042     16865       7805      3556   2545   2959
+00127 DN_2017        23990     17543      10797      3065      0   3681
+      paso_2017      23644     14848      10280      2933      0   1635
+      DN_2015        23174     18689       9745      3126   2255   3563
+00129 DN_2017        25359     17620      10464      3876      0   3280
+      paso_2017      24666     16571       9720      3517      0   3334
+      DN_2015        24851     19711       9478      3865   2442   3926
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+escobar
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0773B                      7010   10350  14710     21200
+00773                      6650   10410  15800     22700
+0773A                      6550   10410  15360     62900
+00774                      7180   11470  17970     54600
+00775                      6650   11780  18630     17000
+0775A                      8940   30930  53140       100
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_286.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  FPV / UC  CAMBIEMOS  Massa  Resto
+0775A DN_2017           64        33        11         15      1      6
+      paso_2017         64        28         8         10      5      5
+      DN_2015           67        39        11         11     11      6
+00775 DN_2017        17044     13530      4555       5850   1583   1542
+      paso_2017      17043     13510      3820       4972   2228   2490
+      DN_2015        16913     14035      4330       4663   2798   2244
+0773B DN_2017        21254     16493      8997       4210   1808   1478
+      paso_2017      18802     14171      6644       2671   2501   2355
+      DN_2015        18320     14538      7228       2754   2841   1715
+00773 DN_2017        22721     17040      6061       6614   2068   2297
+      paso_2017      22372     16458      5135       5070   2778   3475
+      DN_2015        19631     15736      5034       4789   3642   2271
+00774 DN_2017        54607     40004     11514      17855   4045   6590
+      paso_2017      52768     36463      9621      14210   5490   7142
+      DN_2015        50712     38480     10377      14181   6659   7263
+0773A DN_2017        62928     46934     19447      15295   5826   6366
+      paso_2017      57671     40693     14943      11012   7639   7099
+      DN_2015        57290     45261     17178      11371  10280   6432
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+comuna 04
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00047                      5880    9300  13180     14700
+00053                      6910   12170  18410     14400
+00056                      7760   12260  18410      8900
+00055                      7730   12580  17710      9700
+00048                      8190   13100  20270     14600
+00052                      8300   13130  19280     11800
+00049                      8290   13370  18960     12300
+00051                      8840   13610  19870     10200
+00045                      9050   13770  19080      7000
+00057                      8630   13860  19860     18500
+00043                      8680   13970  20770     12200
+00044                      8680   14250  20690      9100
+00054                      8620   14850  20460     14800
+00046                      9030   15160  21590      6000
+00050                      9610   15300  24780     14100
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_296.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00049 DN_2017        12298      7855       4091      2577      0   1187
+      paso_2017      12297      7514       3938      2309      0   1267
+      DN_2015        12405      8994       3793      2812   1537    852
+00047 DN_2017        14689      8633       2695      4834      0   1104
+      paso_2017      14689      6566       2517      3713      0    336
+      DN_2015        13947     10681       2166      5430   1701   1384
+00053 DN_2017        14365      9436       4091      3229      0   2116
+      paso_2017      14027      8627       3768      2825      0   2034
+      DN_2015        14656     10661       3752      3688   1888   1333
+00050 DN_2017        14060      9284       5655      2234      0   1395
+      paso_2017      14057      8326       5426      2122      0    778
+      DN_2015        14216     10736       5294      2452   1377   1613
+00048 DN_2017        14580      9901       4962      2533      0   2406
+      paso_2017      14576      7396       4712      2401      0    283
+      DN_2015        14148      9177       4360      2620   1383    814
+00054 DN_2017        14821      9497       5032      3009      0   1456
+      paso_2017      14470      8311       4714      2690      0    907
+      DN_2015        14431     10586       4526      3111   1654   1295
+00057 DN_2017        18495     13690       6091      3692      0   3907
+      paso_2017      18846     10789       5970      3472      0   1347
+      DN_2015        18597     13635       5499      3818   2752   1566
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+comuna 01
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00003                      5660    9080  12660      2200
+00005                      6050    9410  13250      8000
+00010                      6050   10830  21750     11800
+00019                      8500   13230  19460     11200
+00012                      8610   13240  17670     11200
+00001                      9430   14450  23540     10500
+00016                      8180   14470  21920      8300
+00014                      9560   14520  18900      5100
+00017                      9590   14720  21430     12100
+00018                      8090   15030  22110      7500
+00015                     11370   15160  23190      8500
+00013                     10610   16060  23200     12500
+00006                     10300   16070  24370     15800
+00009                      9040   16170  29500     11400
+00007                     16660   16660  36560      8100
+00002                     11590   16680  23730     10000
+00008                     17350   17350  17350      8800
+00011                     10760   17400  25830     12400
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_306.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00012 DN_2017        11235      7411       3803      1883      0   1725
+      paso_2017      11231      6589       3581      1775      0   1233
+      DN_2015        11604      7661       3444      2099   1222    896
+00019 DN_2017        11251      6519       3313      2378      0    828
+      paso_2017      10904      4747       3062      2071      0   -386
+      DN_2015        11126      7265       2980      2575   1369    341
+00009 DN_2017        11366      6647       4326      1271      0   1050
+      paso_2017      11364      5746       4090      1182      0    474
+      DN_2015        11465      6713       4070      1451    931    261
+00010 DN_2017        11796      7324       4785      1516      0   1023
+      paso_2017      11793      5908       4483      1447      0    -22
+      DN_2015        12092      7929       4401      1613   1012    903
+00017 DN_2017        12082      6963       3745      2386      0    832
+      paso_2017      12072      6395       3638      2294      0    463
+      DN_2015        12155      8590       3317      2528   1388   1357
+00011 DN_2017        12366      7865       4022      1966      0   1877
+      paso_2017      12354      6739       3824      1862      0   1053
+      DN_2015        12645      8310       3687      2206   1149   1268
+00013 DN_2017        12496      7975       4167      2246      0   1562
+      paso_2017      12493      5879       3942      2123      0   -186
+      DN_2015        12667      8451       3740      2408   1404    899
+00006 DN_2017        15840     10562       9087       701      0    774
+      paso_2017      15840      7799       8758       633      0  -1592
+      DN_2015        16120     11089       9242       846    707    294
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+comuna 07
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00086                      7060   11410  16130     28700
+00078                      8930   13990  20270     10800
+00077                      8770   14030  20470     13500
+00084                      9090   14130  19220     10900
+00082                      9400   14410  21230     14800
+00085                      9490   14490  22350      8000
+00081                      8470   14530  22260     12500
+00080                      9170   14560  21400     13100
+00075                      9430   14600  22570     10300
+00076                      9560   14690  21320     16200
+00079                      9270   14750  21540     14300
+00083                     10390   16500  23070     21300
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_316.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00080 DN_2017        13144      9444       5148      2088      0   2208
+      paso_2017      13143      8694       4960      2083      0   1651
+      DN_2015        12989     10681       4624      2149   1587   2321
+00077 DN_2017        13508      9946       4670      2703      0   2573
+      paso_2017      13507      8334       4448      2544      0   1342
+      DN_2015        13529      9315       4013      2801   1959    542
+00079 DN_2017        14315      9048       5098      2205      0   1745
+      paso_2017      14313      7704       4900      2096      0    708
+      DN_2015        14613     10895       4642      2322   1808   2123
+00082 DN_2017        14837      9467       5520      2385      0   1562
+      paso_2017      14834      9757       5240      2182      0   2335
+      DN_2015        14826     11521       4678      2359   1942   2542
+00076 DN_2017        16251     12927       6181      2894      0   3852
+      paso_2017      16250     10512       5883      2822      0   1807
+      DN_2015        16046     12345       5296      2883   2004   2162
+00083 DN_2017        21287     16133       9021      2736      0   4376
+      paso_2017      21286     14299       8701      2719      0   2879
+      DN_2015        20287     16044       7753      2688   2196   3407
+00086 DN_2017        28702     19750       7005      7176      0   5569
+      paso_2017      28355     16160       6514      5898      0   3748
+      DN_2015        27769     19747       5840      7538   4062   2307
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+comuna 11
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00113                      8700   14040  20750     12900
+00121                      8320   14060  20360     15500
+00117                      8910   14230  21020     18400
+00115                      9220   14460  20920     12300
+00114                      9330   14470  20780     16900
+00119                      9120   14660  21850     18100
+00116                      9680   14920  21230     17500
+00120                      8780   15000  22530     19200
+00123                      9320   15030  21900     14400
+00122                      8950   15070  24340     13800
+00118                      9360   15110  22700     14500
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_326.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00123 DN_2017        14359      9667       5970      2162      0   1535
+      paso_2017      14012      8770       5660      1998      0   1112
+      DN_2015        14187     11071       5262      2196   1641   1972
+00118 DN_2017        14493      9888       5882      2181      0   1825
+      paso_2017      14487      8154       5793      2028      0    333
+      DN_2015        14290     11115       5248      2163   1608   2096
+00121 DN_2017        15467     10765       6477      2341      0   1947
+      paso_2017      15465      9465       6207      2219      0   1039
+      DN_2015        15491     12737       5779      2379   2109   2470
+00114 DN_2017        16945     12066       6006      3066      0   2994
+      paso_2017      16943     11059       5869      2894      0   2296
+      DN_2015        16749     12678       5354      3025   1989   2310
+00116 DN_2017        17516     12883       6058      3207      0   3618
+      paso_2017      17513     11262       5893      3119      0   2250
+      DN_2015        17543     13404       5408      3321   2345   2330
+00117 DN_2017        18359     12706       6888      3178      0   2640
+      paso_2017      17668     11694       6319      3019      0   2356
+      DN_2015        18273     14305       6189      3226   2177   2713
+00119 DN_2017        18103     12820       7216      2826      0   2778
+      paso_2017      18102     11258       7019      2682      0   1557
+      DN_2015        18163     13742       6538      2972   2205   2027
+00120 DN_2017        19166     13723       8089      2715      0   2919
+      paso_2017      19161     11886       7914      2579      0   1393
+      DN_2015        19116     14251       7331      2863   2379   1678
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+comuna 15
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00164                      8270   12480  19210     11900
+00162                      8530   13590  19640     17100
+00167                      8890   14530  21340     13000
+00161                      9310   14730  22370     20400
+00166                      9410   14840  21600     16300
+00163                      8800   15050  22180     12400
+00160                      9840   15150  22000     23500
+00159                      8980   15330  21230     12200
+00158                     10180   15570  22680     20000
+00165                     10250   15720  23430     19900
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_336.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00163 DN_2017        12365      7592       3740      2698      0   1154
+      paso_2017      12359      7481       3554      2512      0   1415
+      DN_2015        12396      9523       3369      2765   1370   2019
+00167 DN_2017        12977      9507       5055      2166      0   2286
+      paso_2017      12977      8549       4929      2110      0   1510
+      DN_2015        12167      9822       4397      2142   1402   1881
+00166 DN_2017        16335     12492       5774      3193      0   3525
+      paso_2017      16333     11296       5592      3103      0   2601
+      DN_2015        16371     11889       5223      3191   1933   1542
+00162 DN_2017        17082     11367       5195      3500      0   2672
+      paso_2017      17081      8836       5026      3322      0    488
+      DN_2015        17112     12511       4631      3558   2153   2169
+00165 DN_2017        19872     14478       7285      3445      0   3748
+      paso_2017      19873     12918       6934      3299      0   2685
+      DN_2015        19717     15326       6742      3425   2042   3117
+00158 DN_2017        20044     13147       6808      3414      0   2925
+      paso_2017      20042     11684       6540      3291      0   1853
+      DN_2015        20187     13757       6257      3493   1958   2049
+00161 DN_2017        20433     13224       6663      3755      0   2806
+      paso_2017      20085     11184       6330      3655      0   1199
+      DN_2015        20539     14413       5903      3839   2179   2492
+00160 DN_2017        23502     15934       8001      3807      0   4126
+      paso_2017      23499     14194       7728      3784      0   2682
+      DN_2015        23559     16620       7177      3914   2343   3186
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+comuna 06
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00072                      8440   14330  22100     13500
+00074                      9590   14750  24320     23600
+00073                      9210   14980  23410     17500
+00070                      9660   15170  23400     26200
+00068                     10430   15610  26970     20100
+00069                      9390   15800  24230     29300
+00071                      9970   16440  24750     31200
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_346.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00072 DN_2017        13529      9632       4682      2442      0   2508
+      paso_2017      13523      9480       4604      2349      0   2527
+      DN_2015        13538     10396       4170      2452   1581   2193
+00073 DN_2017        17474     13170       6225      3065      0   3880
+      paso_2017      17476     10021       6234      3025      0    762
+      DN_2015        17350     14228       5668      3076   1836   3648
+00068 DN_2017        20115     15270       7341      3451      0   4478
+      paso_2017      20113     12949       7193      3396      0   2360
+      DN_2015        20031     16076       6559      3486   2033   3998
+00074 DN_2017        23632     18318      10297      3215      0   4806
+      paso_2017      23979     16107      10150      3130      0   2827
+      DN_2015        23754     19399       9416      3419   2471   4093
+00070 DN_2017        26172     19640       9639      4270      0   5731
+      paso_2017      26170     17266       9454      4268      0   3544
+      DN_2015        26042     20632       8585      4386   2786   4875
+00069 DN_2017        29298     22582      12476      4050      0   6056
+      paso_2017      29294     19229      12019      4111      0   3099
+      DN_2015        29367     23182      11585      4131   2990   4476
+00071 DN_2017        31148     22159      12920      4484      0   4755
+      paso_2017      31149     20949      12508      4450      0   3991
+      DN_2015        31167     24475      11375      4583   3309   5208
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+comuna 03
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00031                      7500   13470  18750     12700
+00038                      8590   13970  20550     12800
+00036                      9580   13990  19960      8500
+00035                      9140   14320  21070     12900
+00041                      9170   14500  20940     17800
+00040                      7940   14580  22270      9100
+00042                      8970   14730  21170     16000
+00033                     10120   15130  20640      9300
+00030                     10320   15190  23400     11500
+00037                      8980   15270  22750     11200
+00039                     11940   17510  23220     13400
+00032                     11230   18000  24030     11000
+00034                     11830   19030  22750     13900
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_356.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00031 DN_2017        12682      7482       4565      1743      0   1174
+      paso_2017      12677      7071       4289      1610      0   1172
+      DN_2015        13130      9213       4258      1941   1214   1800
+00038 DN_2017        12792      7375       4197      2258      0    920
+      paso_2017      12786      6464       4091      2207      0    166
+      DN_2015        12829      9134       3811      2526   1474   1323
+00035 DN_2017        12919      8138       4270      2400      0   1468
+      paso_2017      12917      7803       4069      2302      0   1432
+      DN_2015        13030      8809       3727      2443   1571   1068
+00039 DN_2017        13359      9211       4487      2322      0   2402
+      paso_2017      13351      7108       4097      2201      0    810
+      DN_2015        13622      9661       3983      2496   1558   1624
+00034 DN_2017        13936      8774       4644      2248      0   1882
+      paso_2017      14631      8404       4674      2187      0   1543
+      DN_2015        14886     10738       4341      2507   1639   2251
+00042 DN_2017        16007     10378       5447      3111      0   1820
+      paso_2017      15657     10162       5088      2793      0   2281
+      DN_2015        16246     11849       4783      3179   1951   1936
+00041 DN_2017        17799     11474       5856      3678      0   1940
+      paso_2017      18139     11035       5607      3445      0   1983
+      DN_2015        18137     13372       5216      3777   2305   2074
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+comuna 05
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+00058                      9450   14330  20580     14400
+00063                      8980   14660  23240     20400
+00059                      9040   14820  21580     13300
+00067                      9080   14920  21670     20700
+00062                      8990   15130  21500     10200
+00065                      9430   15190  22860     13900
+00064                     10870   15510  22450     22300
+00066                     10470   15540  24180     13300
+00061                      9680   15770  24230     15200
+00060                     10280   15990  22820     15700
+    \end{verbatim}
+
+    
+    \hypertarget{mapa}{%
+\paragraph{Mapa:}\label{mapa}}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_17_366.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{numeros-de-votos.-2015-17}{%
+\subsubsection{Numeros de votos.
+2015-17:}\label{numeros-de-votos.-2015-17}}
+
+    
+    votos por circuito. (puede omitir pequenos)
+
+    
+    
+    \begin{verbatim}
+Fuerza           ELECTORES  VOTANTES  CAMBIEMOS  FPV / UC  Massa  Resto
+00065 DN_2017        13924      9718       4858      2434      0   2426
+      paso_2017      13924      9568       4681      2347      0   2540
+      DN_2015        13908     10689       4336      2595   1347   2411
+00058 DN_2017        14373     10848       4786      2937      0   3125
+      paso_2017      14369      9906       4674      2778      0   2454
+      DN_2015        14073     11467       4182      2991   1977   2317
+00060 DN_2017        15726     11691       5555      3099      0   3037
+      paso_2017      15722      8990       5307      2926      0    757
+      DN_2015        14857     11741       4635      2944   1785   2377
+00061 DN_2017        15158     11075       5805      2491      0   2779
+      paso_2017      15156      9354       5612      2494      0   1248
+      DN_2015        15255     12270       5266      2613   1603   2788
+00063 DN_2017        20372     14927       7304      3593      0   4030
+      paso_2017      20369     13241       6943      3381      0   2917
+      DN_2015        20532     15498       6559      3650   2351   2938
+00067 DN_2017        20680     15522       7088      3643      0   4791
+      paso_2017      20681     13544       6868      3610      0   3066
+      DN_2015        20423     15757       6212      3596   2090   3859
+00064 DN_2017        22343     16479       7633      3880      0   4966
+      paso_2017      22339     14905       7269      3749      0   3887
+      DN_2015        22342     16888       6747      4006   2302   3833
+    \end{verbatim}
+
+    
+    \hypertarget{lugar}{%
+\subsection{Lugar:}\label{lugar}}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+hurlingham
+
+    \end{Verbatim}
+
+    \hypertarget{percentil-ingresos-por-circuito}{%
+\paragraph{Percentil ingresos por
+circuito:}\label{percentil-ingresos-por-circuito}}
+
+    
+    Ingresos en pesos corrientes de Sep-2018. Quantiles 25\%, 75\% y
+mediana.
+
+    
+    
+    \begin{verbatim}
+       Ingresos (basado en EPH)                         
+                            25% mediana    75% electores
+area_1                                                  
+0668A                      7370   11560  16490     39800
+0668B                      7310   11600  16470     53100
+00668                      8090   13060  19640     60000
+    \end{verbatim}
+
+    
+    \emph{Matias Iglesias}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
