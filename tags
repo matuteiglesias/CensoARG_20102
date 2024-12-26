@@ -1,0 +1,87 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROC_CWD	/home/matias/repos/CensoARG_20102/	//
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	5.9.0	//
+Atlas Distritos	notebook.tex	/^\\section{Atlas Distritos}\\label{atlas-distritos}}$/;"	s
+Consulta de distritos electorales	notebook.tex	/^\\subsection{Consulta de distritos$/;"	u	section:Atlas Distritos
+DEFAULT_PART_SIZE	partUploader.py	/^DEFAULT_PART_SIZE = 8 * 1024 * 1024$/;"	v
+Indice.	notebook.tex	/^\\subsection{Indice.}\\label{indice.}}$/;"	u	section:Atlas Distritos
+Lugar:	notebook.tex	/^\\subsection{Lugar:}\\label{lugar}}$/;"	u	section:Atlas Distritos
+MAX_FILE_SIZE	partUploader.py	/^MAX_FILE_SIZE = 800 * 1024 * 1024 * 1024$/;"	v
+MAX_PARTS	partUploader.py	/^MAX_PARTS = 9000$/;"	v
+MAX_PART_SIZE	partUploader.py	/^MAX_PART_SIZE = 150 * 1024 * 1024$/;"	v
+MIN_FILE_SIZE	partUploader.py	/^MIN_FILE_SIZE = 5 * 1024 * 1024$/;"	v
+Mapa:	notebook.tex	/^\\paragraph{Mapa:}\\label{mapa}}$/;"	P	subsection:Atlas Distritos""Lugar:
+Numeros de votos. 2015-17:	notebook.tex	/^\\subsubsection{Numeros de votos.$/;"	b	subsection:Atlas Distritos""Lugar:
+PAGE_SIZE	partUploader.py	/^PAGE_SIZE = 8192$/;"	v
+Percentil ingresos por circuito:	notebook.tex	/^\\paragraph{Percentil ingresos por$/;"	P	subsection:Atlas Distritos""Lugar:
+\\AlertTok	notebook.tex	/^    \\newcommand{\\AlertTok}[1]{\\textcolor[rgb]{1.00,0.00,0.00}{\\textbf{{#1}}}}$/;"	C
+\\AnnotationTok	notebook.tex	/^    \\newcommand{\\AnnotationTok}[1]{\\textcolor[rgb]{0.38,0.63,0.69}{\\textbf{\\textit{{#1}}}}}$/;"	C
+\\AttributeTok	notebook.tex	/^    \\newcommand{\\AttributeTok}[1]{\\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}$/;"	C
+\\BaseNTok	notebook.tex	/^    \\newcommand{\\BaseNTok}[1]{\\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}$/;"	C
+\\BuiltInTok	notebook.tex	/^    \\newcommand{\\BuiltInTok}[1]{{#1}}$/;"	C
+\\CharTok	notebook.tex	/^    \\newcommand{\\CharTok}[1]{\\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}$/;"	C
+\\CommentTok	notebook.tex	/^    \\newcommand{\\CommentTok}[1]{\\textcolor[rgb]{0.38,0.63,0.69}{\\textit{{#1}}}}$/;"	C
+\\CommentVarTok	notebook.tex	/^    \\newcommand{\\CommentVarTok}[1]{\\textcolor[rgb]{0.38,0.63,0.69}{\\textbf{\\textit{{#1}}}}}$/;"	C
+\\ConstantTok	notebook.tex	/^    \\newcommand{\\ConstantTok}[1]{\\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}$/;"	C
+\\ControlFlowTok	notebook.tex	/^    \\newcommand{\\ControlFlowTok}[1]{\\textcolor[rgb]{0.00,0.44,0.13}{\\textbf{{#1}}}}$/;"	C
+\\DataTypeTok	notebook.tex	/^    \\newcommand{\\DataTypeTok}[1]{\\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}$/;"	C
+\\DecValTok	notebook.tex	/^    \\newcommand{\\DecValTok}[1]{\\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}$/;"	C
+\\DocumentationTok	notebook.tex	/^    \\newcommand{\\DocumentationTok}[1]{\\textcolor[rgb]{0.73,0.13,0.13}{\\textit{{#1}}}}$/;"	C
+\\ErrorTok	notebook.tex	/^    \\newcommand{\\ErrorTok}[1]{\\textcolor[rgb]{1.00,0.00,0.00}{\\textbf{{#1}}}}$/;"	C
+\\ExtensionTok	notebook.tex	/^    \\newcommand{\\ExtensionTok}[1]{{#1}}$/;"	C
+\\FloatTok	notebook.tex	/^    \\newcommand{\\FloatTok}[1]{\\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}$/;"	C
+\\FunctionTok	notebook.tex	/^    \\newcommand{\\FunctionTok}[1]{\\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}$/;"	C
+\\ImportTok	notebook.tex	/^    \\newcommand{\\ImportTok}[1]{{#1}}$/;"	C
+\\InformationTok	notebook.tex	/^    \\newcommand{\\InformationTok}[1]{\\textcolor[rgb]{0.38,0.63,0.69}{\\textbf{\\textit{{#1}}}}/;"	C
+\\KeywordTok	notebook.tex	/^    \\newcommand{\\KeywordTok}[1]{\\textcolor[rgb]{0.00,0.44,0.13}{\\textbf{{#1}}}}$/;"	C
+\\NormalTok	notebook.tex	/^    \\newcommand{\\NormalTok}[1]{{#1}}$/;"	C
+\\OperatorTok	notebook.tex	/^    \\newcommand{\\OperatorTok}[1]{\\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}$/;"	C
+\\OtherTok	notebook.tex	/^    \\newcommand{\\OtherTok}[1]{\\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}$/;"	C
+\\PreprocessorTok	notebook.tex	/^    \\newcommand{\\PreprocessorTok}[1]{\\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}$/;"	C
+\\RegionMarkerTok	notebook.tex	/^    \\newcommand{\\RegionMarkerTok}[1]{{#1}}$/;"	C
+\\SpecialCharTok	notebook.tex	/^    \\newcommand{\\SpecialCharTok}[1]{\\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}$/;"	C
+\\SpecialStringTok	notebook.tex	/^    \\newcommand{\\SpecialStringTok}[1]{\\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}$/;"	C
+\\StringTok	notebook.tex	/^    \\newcommand{\\StringTok}[1]{\\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}$/;"	C
+\\VariableTok	notebook.tex	/^    \\newcommand{\\VariableTok}[1]{\\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}$/;"	C
+\\VerbatimStringTok	notebook.tex	/^    \\newcommand{\\VerbatimStringTok}[1]{\\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}$/;"	C
+\\WarningTok	notebook.tex	/^    \\newcommand{\\WarningTok}[1]{\\textcolor[rgb]{0.38,0.63,0.69}{\\textbf{\\textit{{#1}}}}}$/;"	C
+addPart	partUploader.py	/^def addPart(config, filestream, itemid, partNum, partLen, user, token, nostream):$/;"	f
+args	partUploader.py	/^    args = parser.parse_args()$/;"	v
+atlas-distritos	notebook.tex	/^\\section{Atlas Distritos}\\label{atlas-distritos}}$/;"	l
+cancelMultipart	partUploader.py	/^def cancelMultipart(config, itemid, user, token):$/;"	f
+cancelThreads	partUploader.py	/^def cancelThreads(num, queue):$/;"	f
+commitMultipart	partUploader.py	/^def commitMultipart(config, itemid, user, token, itemtype, itemtitle):$/;"	f
+config	partUploader.py	/^    config = readConfig(args.cfg)$/;"	v
+consulta-de-distritos-electorales	notebook.tex	/^electorales}\\label{consulta-de-distritos-electorales}}$/;"	l
+df_to_geojson	modules/mapbox_tools.py	/^def df_to_geojson(df, properties, type_, coordinates):$/;"	f
+gInterrupt	partUploader.py	/^gInterrupt = False$/;"	v
+indice.	notebook.tex	/^\\subsection{Indice.}\\label{indice.}}$/;"	l
+isEmpty	partUploader.py	/^def isEmpty(queue):$/;"	f
+login	partUploader.py	/^def login(config):$/;"	f
+lugar	notebook.tex	/^\\subsection{Lugar:}\\label{lugar}}$/;"	l
+mapa	notebook.tex	/^\\paragraph{Mapa:}\\label{mapa}}$/;"	l
+numeros-de-votos.-2015-17	notebook.tex	/^2015-17:}\\label{numeros-de-votos.-2015-17}}$/;"	l
+parser	partUploader.py	/^    parser = argparse.ArgumentParser(description='AGO Uploader Utility')$/;"	v
+percentil-ingresos-por-circuito	notebook.tex	/^circuito:}\\label{percentil-ingresos-por-circuito}}$/;"	l
+readConfig	partUploader.py	/^def readConfig(cfgfile):$/;"	f
+referer	partUploader.py	/^referer = "http:\/\/www.arcgis.com\/sharing"$/;"	v
+service	modules/mapbox_tools.py	/^service = Uploader(access_token=token)$/;"	v
+shutdown_handler	partUploader.py	/^def shutdown_handler(signum, frame):$/;"	f
+sizeof_fmt	partUploader.py	/^def sizeof_fmt(num, suffix='B'):$/;"	f
+startMultipart	partUploader.py	/^def startMultipart(config, filename, user, token, overwrite):$/;"	f
+status	partUploader.py	/^def status(config, itemid, user, token):$/;"	f
+token	modules/mapbox_tools.py	/^token = 'sk.eyJ1IjoibWF0dXRlaWdsZXNpYXMiLCJhIjoiY2puODA4bW8xMGV1dzNrcGtiOGp6NXQ5aCJ9.DohKmjn_o6M/;"	v
+upload_file	modules/mapbox_tools.py	/^def upload_file(data, name, username = 'matuteiglesias', token = 'sk.eyJ1IjoibWF0dXRlaWdsZXNpYXM/;"	f
+uploader_thread	partUploader.py	/^def uploader_thread(config, filename, itemid, user, token, iq, oq, intq, verbose, nostream):$/;"	f
+uploadfile	partUploader.py	/^def uploadfile(config, filename, multiprocess, threads, overwrite, itemtype, itemtitle, itemfile/;"	f
+username	modules/mapbox_tools.py	/^username = 'matuteiglesias'$/;"	v
+verboseprint	partUploader.py	/^        def verboseprint(*args):$/;"	f
+verboseprint	partUploader.py	/^        def verboseprint(*args):$/;"	f	function:uploader_thread	file:
